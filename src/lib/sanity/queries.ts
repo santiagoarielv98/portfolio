@@ -20,10 +20,7 @@ export const getPageContent = async (lang: string) => {
             ...,
             "position": position.${lang},
             "location": location.${lang},
-            "description": description[]{
-                ...,
-                "es": es
-            },
+            "description": description[].${lang},
             "technologies": technologies[]->{
                 ...,
                 "name": name.${lang}

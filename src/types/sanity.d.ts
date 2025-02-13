@@ -1,8 +1,17 @@
 export type HeroSection = {
     sectionType: "hero";
-    content: null;
     cta: Cta;
     description: string;
+}
+
+export type AboutSection = {
+    sectionType: "about";
+    content: Array<{ personalInfo: PersonalInfo }>
+}
+
+export type WorkExperienceSection = {
+    sectionType: "workExperience";
+    content: Array<{ workExperience: WorkExperience }>
 }
 
 export type Section = {
@@ -10,7 +19,7 @@ export type Section = {
     title: string;
     layout: string;
     order: number;
-} & HeroSection;
+} & (HeroSection | AboutSection | WorkExperienceSection);
 
 export interface Content {
     _key: string;
@@ -47,6 +56,11 @@ export interface PersonalInfo {
     resume: string;
     _createdAt: Date;
     profileImage: string;
+}
+
+export interface Technology {
+    name: string;
+    level: number;
 }
 
 export interface Project {
@@ -97,8 +111,8 @@ export interface WorkExperience {
     _updatedAt: Date;
     endDate: Date;
     _rev: string;
-    description: Text[];
-    technologies: null;
+    description: string[];
+    technologies: null | Technology[];
 }
 
 export enum Type {
