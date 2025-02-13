@@ -9,6 +9,7 @@ import { CodeIcon, ExternalLink, Github, Rocket } from "lucide-react";
 import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
+import Link from "next/link";
 
 const Projects = ({
   section,
@@ -88,7 +89,9 @@ const Projects = ({
                     <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                       {project.title}
                     </span>
-                    <ExternalLink className="h-4 w-4 text-muted-foreground transition-colors duration-300 group-hover:text-primary" />
+                    <Link href={project.links.live} passHref target="_blank">
+                      <ExternalLink className="h-4 w-4 text-muted-foreground transition-colors duration-300 group-hover:text-primary" />
+                    </Link>
                   </CardTitle>
                 </CardHeader>
 
