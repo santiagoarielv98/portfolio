@@ -38,7 +38,7 @@ export function Hero({
       </Parallax>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-4xl space-y-8 px-4 text-center">
+      <div className="relative z-10 mx-auto my-20 max-w-4xl space-y-8 px-4 text-center">
         <Parallax translateY={[-20, 20]} className="space-y-4">
           <TypographyH1 className="animate-fade-in-up bg-gradient-to-r from-foreground to-primary/50 bg-clip-text text-transparent">
             {section.title}
@@ -69,7 +69,7 @@ export function Hero({
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 animate-bounce">
+      <div className="absolute bottom-4 animate-bounce">
         <MoveDown className="h-8 w-8 text-muted-foreground" />
       </div>
     </section>
