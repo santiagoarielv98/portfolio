@@ -54,10 +54,10 @@ export const getPageContent = async (lang: string) => {
       },
       "layout": layout,
       "order": order,
-      "cta": {
-        "text": cta.text.${lang},
-        "link": cta.link
-        }
+      "ctas": ctas[]{
+        "text": text.${lang},
+        "action": action
+      }
     }`;
 
   return client.fetch<Section[]>(query);

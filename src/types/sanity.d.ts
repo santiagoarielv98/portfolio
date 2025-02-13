@@ -1,6 +1,6 @@
 export type HeroSection = {
   sectionType: "hero";
-  cta: Cta;
+  ctas: Cta[];
   description: string;
 };
 
@@ -146,5 +146,5 @@ export enum Type {
 
 export interface Cta {
   text: string;
-  link: string;
+  action: string;
 }
