@@ -1,4 +1,4 @@
-import { AboutSection, Section } from '@/types/sanity'
+import { Section } from '@/types/sanity'
 import Image from 'next/image'
 import React from 'react'
 
@@ -15,11 +15,11 @@ const SectionRenderer = (props: SectionRendererProps) => {
         case 'about':
             return <About section={section} />
         case 'workExperience':
-            console.log(section)
             return <WorkExperience section={section} />
         case 'projects':
             return <Projects section={section} />
         case 'skills':
+            console.log(section)
             return <Skills section={section} />
         case 'education':
             return <Education section={section} />
@@ -130,10 +130,31 @@ const WorkExperience = ({ section }: { section: Section & { sectionType: 'workEx
     </section>
 )
 
-const Projects = ({ section }: { section: Section }) => (
+const Projects = ({ section }: { section: Section & { sectionType: 'projects' } }) => (
     <section>
-        <TypographyH1>Projects Section</TypographyH1>
-        <pre>{JSON.stringify(section, null, 2)}</pre>
+        <TypographyH1>{section.title}</TypographyH1>
+        {section.content.map((content, index) => {
+            const { project } = content
+            return (
+                <div key={index}>
+                    <Image src={project.featuredImage} alt={project.title}
+                        width={400} height={400}
+                    />
+                    <TypographyH2>{project.title}</TypographyH2>
+                    <TypographyP>{project.description}</TypographyP>
+                    <ul>
+                        {project.technologies?.map((technology, index) => (
+                            <li key={index}>{technology.name}</li>
+                        ))}
+                    </ul>
+                    <ul>
+                        <li><a href={project.links.live}>Live</a></li>
+                        <li><a href={project.links.repo}>Repo</a></li>
+                    </ul>
+
+                </div>
+            )
+        })}
     </section>
 )
 

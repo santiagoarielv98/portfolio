@@ -14,12 +14,17 @@ export type WorkExperienceSection = {
     content: Array<{ workExperience: WorkExperience }>
 }
 
+export type ProjectSection = {
+    sectionType: "projects";
+    content: Array<{ project: Project }>
+}
+
 export type Section = {
     identifier: string;
     title: string;
     layout: string;
     order: number;
-} & (HeroSection | AboutSection | WorkExperienceSection);
+} & (HeroSection | AboutSection | WorkExperienceSection | ProjectSection);
 
 export interface Content {
     _key: string;
@@ -64,21 +69,16 @@ export interface Technology {
 }
 
 export interface Project {
-    technologies: null;
+    technologies: null | Technology[];
     _updatedAt: Date;
     title: string;
     _id: string;
-    featuredImage: FeaturedImage;
+    featuredImage: string;
     links: Links;
     _createdAt: Date;
     _rev: string;
     _type: string;
     description: string;
-}
-
-export interface FeaturedImage {
-    _type: string;
-    asset: Asset;
 }
 
 export interface Asset {

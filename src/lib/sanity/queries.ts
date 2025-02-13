@@ -34,6 +34,7 @@ export const getPageContent = async (lang: string) => {
                 ...,
                 "name": name.${lang}
             },
+            "featuredImage": featuredImage.asset->url,
             "links": links
         },
         "skillCategory": *[_type == "skillCategory" && _id == ^._ref][0]{
