@@ -60,7 +60,7 @@ export function Hero({
             <Button
               key={index}
               size="lg"
-              className="font-display shadow-lg shadow-primary/25 hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
+              className="font-display shadow-lg shadow-primary/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
             >
               {cta.text}
             </Button>
@@ -69,18 +69,7 @@ export function Hero({
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        {/* <svg
-          className="w-6 h-6 text-muted-foreground"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg> */}
+      <div className="absolute bottom-8 animate-bounce">
         <MoveDown className="h-8 w-8 text-muted-foreground" />
       </div>
     </section>
