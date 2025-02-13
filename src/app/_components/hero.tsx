@@ -53,28 +53,35 @@ export function Hero({
         </Parallax>
 
         {section.cta && (
-          <div className="animate-fade-in-up animation-delay-500 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              size="lg"
-              className="group relative overflow-hidden shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
-            >
-              <span className="relative flex items-center gap-2">
-                <Rocket className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                {section.cta.text}
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 transform translate-x-[-100%] group-hover:translate-x-[100%]" />
-            </Button>
+          <>
+            {/* Nuevo divisor */}
+            <div className="w-full max-w-2xl mx-auto py-6">
+              <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            </div>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="group shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <ScrollText className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
-              View Resume
-            </Button>
-          </div>
+            <div className="animate-fade-in-up animation-delay-500 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button
+                size="lg"
+                className="group relative overflow-hidden shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
+              >
+                <span className="relative flex items-center gap-2">
+                  <Rocket className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  {section.cta.text}
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 transform translate-x-[-100%] group-hover:translate-x-[100%]" />
+              </Button>
+
+              <Button
+                variant="outline"
+                size="lg"
+                className="group shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <ScrollText className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
+                View Resume
+              </Button>
+            </div>
+          </>
         )}
       </div>
 

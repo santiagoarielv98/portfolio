@@ -33,11 +33,11 @@ export function SectionHeader({
         {subtitle}
       </Badge>
       <div className="relative flex items-center justify-center gap-4">
-        <div className="w-[200px] bg-gradient-to-r from-transparent to-primary/30 h-[2px]" />
+        <div className="md:w-[200px] w-[50px] bg-gradient-to-r from-transparent to-primary/30 h-[2px]" />
         <TypographyH1 className="relative font-display font-bold gradient-text">
           {title}
         </TypographyH1>
-        <div className="w-[200px] bg-gradient-to-r from-primary/30 to-transparent h-[2px]" />
+        <div className="md:w-[200px] w-[50px] bg-gradient-to-r from-primary/30 to-transparent h-[2px]" />
       </div>
     </motion.div>
   );
