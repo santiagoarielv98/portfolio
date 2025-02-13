@@ -113,7 +113,7 @@ const Education = ({
                           <Badge
                             key={idx}
                             variant="secondary"
-                            className="shadow-sm hover:shadow-md transition-all duration-300 bg-secondary/10 hover:bg-secondary/20"
+                            className="shadow-sm hover:shadow-md transition-all duration-300 bg-secondary/50 hover:bg-secondary/70"
                           >
                             {achievement}
                           </Badge>

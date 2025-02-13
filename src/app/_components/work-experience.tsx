@@ -22,9 +22,13 @@ const WorkExperience = ({
       />
 
       {/* Timeline */}
-      <div className="relative space-y-8">
+      <div className="relative space-y-12">
         {/* Timeline line */}
-        <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-primary opacity-20 ml-8 md:ml-[7.5rem]" />
+        <div
+          className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 ml-4 sm:ml-6 md:ml-8 
+          before:absolute before:top-0 before:w-4 before:h-4 before:-left-1.5 before:rounded-full before:bg-primary/50
+          after:absolute after:bottom-0 after:w-4 after:h-4 after:-left-1.5 after:rounded-full after:bg-primary/50"
+        />
 
         {section.content.map((content, index) => {
           const { workExperience } = content;
@@ -38,15 +42,19 @@ const WorkExperience = ({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
+              className="relative ml-8 sm:ml-12 md:ml-16"
             >
-              <Card className="relative ml-12 md:ml-32 hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50">
-                {/* Timeline dot */}
-                <div className="absolute -left-[44px] md:-left-[120px] top-8 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50" />
+              {/* Timeline dot and connector */}
+              <div className="absolute -left-[2.45rem] sm:-left-[3.45rem] md:-left-[4.45rem] top-8 flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary shadow-lg shadow-primary/50 z-10" />
+                <div className="h-[2px] w-4 bg-gradient-to-r from-primary to-transparent" />
+              </div>
 
+              <Card className="relative transform-gpu transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl bg-background/95 border-2 hover:border-primary/50">
                 <CardHeader className="space-y-4">
-                  <div className="flex flex-wrap gap-4 items-start justify-between">
+                  <div className="flex flex-col sm:flex-row gap-4 items-start justify-between">
                     <div className="space-y-1">
-                      <CardTitle className="text-xl md:text-2xl font-display bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      <CardTitle className="text-xl md:text-2xl font-display gradient-text">
                         {workExperience.position}
                       </CardTitle>
                       <div className="flex items-center gap-2 text-muted-foreground">
@@ -56,7 +64,7 @@ const WorkExperience = ({
                         </span>
                       </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="flex flex-row sm:flex-col items-start gap-2 sm:text-right">
                       <Badge
                         variant="outline"
                         className="flex items-center gap-1 shadow-sm"
@@ -64,7 +72,7 @@ const WorkExperience = ({
                         <MapPin className="w-3 h-3" />
                         {workExperience.location}
                       </Badge>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground whitespace-nowrap">
                         <CalendarDays className="w-4 h-4" />
                         <span>
                           {startDate.toLocaleDateString("en-US", {
@@ -114,7 +122,7 @@ const WorkExperience = ({
                         >
                           <Badge
                             variant="secondary"
-                            className="shadow-sm hover:shadow-md transition-all duration-300 bg-secondary/10 hover:bg-secondary/20"
+                            className="shadow-sm hover:shadow-md transition-all duration-300 bg-secondary/50 hover:bg-secondary/70 text-foreground font-medium"
                           >
                             {tech.name}
                           </Badge>
