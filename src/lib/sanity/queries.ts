@@ -1,0 +1,59 @@
+import { Section } from "@/types/sanity";
+import { client } from "./client";
+
+export const getPageContent = async (lang: string) => {
+    const query = `*[_type == "section"] | order(order asc){
+      "identifier": identifier.current,
+      "title": title.${lang},
+      "description": description.${lang},
+      "sectionType": sectionType,
+      "content": content[]{
+        ...,
+        "personalInfo": *[_type == "personalInfo" && _id == ^._ref][0]{
+            ...,
+            "fullName": fullName.${lang},
+            "professionalTitle": professionalTitle.${lang},
+            "bio": bio.${lang},
+            "profileImage": profileImage.asset->url,
+            "resume": resume.asset->url,
+        },
+        "workExperience": *[_type == "workExperience" && _id == ^._ref][0]{
+            ...,
+            "position": position.${lang},
+            "location": location.${lang},
+            "description": description[]{
+                ...,
+                "es": es
+            },
+            "technologies": technologies[]->{
+                ...,
+                "name": name.${lang}
+            }
+        },
+        "project": *[_type == "project" && _id == ^._ref][0]{
+            ...,
+            "title": title.${lang},
+            "description": description.${lang},
+            "technologies": technologies[]->{
+                ...,
+                "name": name.${lang}
+            },
+            "links": links
+        },
+        "skillCategory": *[_type == "skillCategory" && _id == ^._ref][0]{
+            ...,
+            "name": name.${lang}
+        },
+        "education": *[_type == "education" && _id == ^._ref][0]{
+            ...,
+            "degree": degree.${lang},
+            "description": description.${lang}
+        }
+      },
+      "layout": layout,
+      "order": order,
+      "cta": cta
+    }`;
+
+    return client.fetch<Section[]>(query);
+};
