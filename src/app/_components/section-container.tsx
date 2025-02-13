@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ReactNode, useRef } from "react";
 
 interface SectionContainerProps {
   children: ReactNode;
@@ -11,17 +11,26 @@ export function SectionContainer({
   children,
   className,
 }: SectionContainerProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
   return (
-    <section className={cn("section-container", className)}>
+    <section
+      ref={containerRef}
+      className={cn("relative py-32 overflow-hidden", className)}
+    >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="relative content-width section-padding"
+        style={{ opacity }}
+        className="relative max-w-6xl mx-auto px-4"
       >
         {children}
 
