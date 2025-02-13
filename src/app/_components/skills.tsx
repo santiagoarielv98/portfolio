@@ -82,7 +82,7 @@ const Skills = ({
     <SectionContainer variant="skills">
       <SectionHeader
         title={section.title}
-        subtitle="My Toolbox"
+        subtitle={section.subtitle}
         icon={Lightbulb}
       />
 

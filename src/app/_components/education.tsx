@@ -23,7 +23,7 @@ const Education = ({
     <SectionContainer>
       <SectionHeader
         title={section.title}
-        subtitle="Academic Journey"
+        subtitle={section.subtitle}
         icon={GraduationCap}
       />
 
@@ -100,27 +100,27 @@ const Education = ({
                   </motion.div>
 
                   {/* Achievements or highlights could go here */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="border-t border-border/50 pt-4"
-                  >
-                    <div className="flex flex-wrap gap-2">
-                      {["Research", "Team Projects", "Leadership"].map(
-                        (achievement, idx) => (
+                  {education.achievements && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 }}
+                      className="border-t border-border/50 pt-4"
+                    >
+                      <div className="flex flex-wrap gap-2">
+                        {education.achievements.map((achievement, idx) => (
                           <Badge
                             key={idx}
                             variant="secondary"
                             className="bg-secondary/50 shadow-sm transition-all duration-300 hover:bg-secondary/70 hover:shadow-md"
                           >
-                            {achievement}
+                            {achievement.name}
                           </Badge>
-                        ),
-                      )}
-                    </div>
-                  </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>

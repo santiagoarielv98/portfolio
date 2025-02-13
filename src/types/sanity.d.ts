@@ -72,6 +72,7 @@ export interface Education {
   endDate: Date;
   description: string;
   _type: string;
+  achievements: null | Technology[];
 }
 
 export interface PersonalInfo {

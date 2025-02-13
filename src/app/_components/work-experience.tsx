@@ -17,14 +17,14 @@ const WorkExperience = ({
     <SectionContainer variant="work">
       <SectionHeader
         title={section.title}
-        subtitle="Professional Journey"
+        subtitle={section.subtitle}
         icon={BriefcaseIcon}
       />
 
       {/* Timeline */}
-      <div className="relative space-y-12">
+      <div className="relative space-y-8 sm:space-y-12">
         {/* Timeline line */}
-        <div className="absolute bottom-2 left-0 top-2 ml-4 w-1 bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 before:absolute before:-left-1.5 before:top-0 before:h-4 before:w-4 before:rounded-full before:bg-primary/50 after:absolute after:-left-1.5 after:bottom-0 after:h-4 after:w-4 after:rounded-full after:bg-primary/50 sm:ml-6 md:ml-8" />
+        <div className="absolute bottom-2 left-0 top-2 ml-2 hidden w-0.5 bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 before:absolute before:-left-1 before:top-0 before:h-3 before:w-3 before:rounded-full before:bg-primary/50 after:absolute after:-left-1 after:bottom-0 after:h-3 after:w-3 after:rounded-full after:bg-primary/50 sm:ml-6 sm:block md:ml-8" />
 
         {section.content.map((content, index) => {
           const { workExperience } = content;
@@ -38,17 +38,17 @@ const WorkExperience = ({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="relative ml-8 sm:ml-12 md:ml-16"
+              className="relative ml-0 sm:ml-12 md:ml-16"
             >
               {/* Timeline dot and connector */}
-              <div className="absolute -left-[2.45rem] top-8 flex items-center sm:-left-[3.45rem] md:-left-[4.45rem]">
-                <div className="z-10 h-5 w-5 rounded-full bg-primary shadow-lg shadow-primary/50" />
-                <div className="h-[2px] w-4 bg-gradient-to-r from-primary to-transparent" />
+              <div className="absolute -left-[1.75rem] top-8 hidden items-center sm:-left-[3.45rem] sm:flex md:-left-[4.45rem]">
+                <div className="z-10 h-4 w-4 rounded-full bg-primary shadow-lg shadow-primary/50 sm:h-5 sm:w-5" />
+                <div className="h-[2px] w-3 bg-gradient-to-r from-primary to-transparent sm:w-4" />
               </div>
 
               <Card className="relative transform-gpu border-2 bg-background/95 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20">
                 <CardHeader className="space-y-4">
-                  <div className="flex flex-col items-start justify-between gap-4 sm:flex-row">
+                  <div className="flex flex-col items-start justify-between gap-2 sm:flex-row">
                     <div className="space-y-1">
                       <CardTitle className="gradient-text font-display text-xl md:text-2xl">
                         {workExperience.position}
@@ -60,7 +60,7 @@ const WorkExperience = ({
                         </span>
                       </div>
                     </div>
-                    <div className="flex flex-row items-start gap-2 sm:flex-col sm:text-right">
+                    <div className="flex flex-row flex-wrap items-start gap-2 sm:flex-col sm:text-right">
                       <Badge
                         variant="outline"
                         className="flex items-center gap-1 shadow-sm"
@@ -104,9 +104,10 @@ const WorkExperience = ({
                   </ul>
 
                   <div className="pt-4">
-                    <h4 className="mb-2 font-display text-sm text-muted-foreground">
+                    {/* TRADUCIR */}
+                    {/* <h4 className="mb-2 font-display text-sm text-muted-foreground">
                       Technologies & Tools
-                    </h4>
+                    </h4> */}
                     <div className="flex flex-wrap gap-2">
                       {workExperience.technologies?.map((tech, idx) => (
                         <motion.div

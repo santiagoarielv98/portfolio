@@ -60,7 +60,12 @@ export const getPageContent = async (lang: string) => {
         "education": *[_type == "education" && _id == ^._ref][0]{
             ...,
             "degree": degree.${lang},
-            "description": description.${lang}
+            "description": description.${lang},
+            "achievements":  achievements[]->{
+                    ...,
+                    "name": name.${lang},
+                    "level": level
+                }
         }
       },
       "layout": layout,

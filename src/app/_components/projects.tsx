@@ -19,7 +19,7 @@ const Projects = ({
     <SectionContainer variant="projects">
       <SectionHeader
         title={section.title}
-        subtitle="Featured Projects"
+        subtitle={section.subtitle}
         icon={CodeIcon}
       />
 
