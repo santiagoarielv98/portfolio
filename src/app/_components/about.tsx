@@ -20,6 +20,12 @@ import Image from "next/image";
 import { TypographyH1, TypographyP } from "./typography";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const About = ({
   section,
@@ -87,7 +93,7 @@ const About = ({
                 </motion.div>
               </div>
 
-              {/* Enhanced Social Links */}
+              {/* Enhanced Social Links with Tooltips */}
               <div className="absolute -right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4">
                 {[
                   {
@@ -119,24 +125,38 @@ const About = ({
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 + index * 0.1 }}
                   >
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      className={`rounded-full shadow-lg ${social.color} hover:text-white transition-all duration-300`}
-                      asChild
-                    >
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative group"
-                      >
-                        <social.icon className="h-5 w-5" />
-                        <span className="absolute -right-2 translate-x-full px-2 py-1 ml-2 text-sm text-foreground bg-background/90 backdrop-blur-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
-                          {social.label}
-                        </span>
-                      </a>
-                    </Button>
+                    <TooltipProvider>
+                      <Tooltip delayDuration={100}>
+                        <TooltipTrigger asChild>
+                          <Button
+                            size="icon"
+                            variant="outline"
+                            className={`rounded-full shadow-lg ${social.color} hover:text-white transition-all duration-300`}
+                            asChild
+                          >
+                            <a
+                              href={social.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <social.icon className="h-5 w-5" />
+                            </a>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent
+                          side="right"
+                          className="hidden md:block bg-background/95 backdrop-blur-sm border-2 border-primary/20 shadow-xl"
+                        >
+                          <p className="font-display">{social.label}</p>
+                        </TooltipContent>
+                        <TooltipContent
+                          side="left"
+                          className="md:hidden bg-background/95 backdrop-blur-sm border-2 border-primary/20 shadow-xl"
+                        >
+                          <p className="font-display">{social.label}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </motion.div>
                 ))}
               </div>
@@ -148,7 +168,7 @@ const About = ({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="space-y-8"
+              className="space-y-8 text-left md:text-center"
             >
               <div className="space-y-4">
                 <motion.div
@@ -173,7 +193,7 @@ const About = ({
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="flex flex-wrap gap-2"
+                  className="flex flex-wrap gap-2 justify-start md:justify-center"
                 >
                   {personalInfo.professionalTitle
                     .split(" ")
@@ -198,14 +218,14 @@ const About = ({
 
               <Separator className="bg-primary/20" />
 
-              <div className="prose prose-neutral dark:prose-invert">
+              <div className="prose prose-neutral dark:prose-invert max-w-none">
                 <TypographyP className="text-lg leading-relaxed">
                   {personalInfo.bio}
                 </TypographyP>
               </div>
 
               {/* Enhanced Actions */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-start md:justify-center">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -233,12 +253,12 @@ const About = ({
                 </motion.div>
               </div>
 
-              {/* Skills Preview */}
+              {/* Skills Preview - Removed tooltips */}
               <div className="mt-8">
                 <h3 className="text-sm font-display text-muted-foreground mb-3">
                   TOP SKILLS
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-start md:justify-center">
                   {["React", "TypeScript", "Node.js", "Next.js", "UI/UX"].map(
                     (skill, index) => (
                       <motion.div
