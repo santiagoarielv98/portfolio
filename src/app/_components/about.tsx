@@ -102,6 +102,7 @@ const About = ({
                     label: "GitHub",
                     color:
                       "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-[#333] hover:border-[#333]",
+                    description: "Check out my repositories",
                   },
                   {
                     icon: Linkedin,
@@ -109,6 +110,7 @@ const About = ({
                     label: "LinkedIn",
                     color:
                       "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-[#0077b5] hover:border-[#0077b5]",
+                    description: "Connect with me",
                   },
                   {
                     icon: Mail,
@@ -116,6 +118,7 @@ const About = ({
                     label: "Email",
                     color:
                       "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-primary hover:border-primary",
+                    description: "Get in touch",
                   },
                 ].map((social, index) => (
                   <motion.div
@@ -145,15 +148,31 @@ const About = ({
                         </TooltipTrigger>
                         <TooltipContent
                           side="right"
-                          className="hidden md:block bg-background/95 backdrop-blur-sm border-2 border-primary/20 shadow-xl"
+                          sideOffset={10}
+                          className="hidden md:block px-4 py-3 bg-background/95 backdrop-blur-sm border-2 border-primary/20 shadow-xl"
                         >
-                          <p className="font-display">{social.label}</p>
+                          <div className="space-y-1">
+                            <p className="font-display text-sm font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                              {social.label}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {social.description}
+                            </p>
+                          </div>
                         </TooltipContent>
                         <TooltipContent
                           side="left"
-                          className="md:hidden bg-background/95 backdrop-blur-sm border-2 border-primary/20 shadow-xl"
+                          sideOffset={10}
+                          className="md:hidden px-4 py-3 bg-background/95 backdrop-blur-sm border-2 border-primary/20 shadow-xl"
                         >
-                          <p className="font-display">{social.label}</p>
+                          <div className="space-y-1">
+                            <p className="font-display text-sm font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                              {social.label}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {social.description}
+                            </p>
+                          </div>
                         </TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
