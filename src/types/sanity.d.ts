@@ -88,6 +88,7 @@ export interface PersonalInfo {
   _createdAt: Date;
   profileImage: string;
   skillCategory: SkillCategory;
+  socialMedia: SocialMedia[];
 }
 
 export interface Technology {
@@ -156,4 +157,10 @@ export interface Cta {
 export interface Skill {
   name: string;
   level: number;
+}
+
+export interface SocialMedia {
+  platform: string;
+  url: string;
+  tooltip: string;
 }

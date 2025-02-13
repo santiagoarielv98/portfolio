@@ -25,6 +25,12 @@ export const getPageContent = async (lang: string) => {
                     "name": name.${lang},
                     "level": level
                 }
+            },
+            "socialMedia": socialMedia[]->{
+                ...,
+                "platform": platform,
+                "url": url,
+                "tooltip": tooltip.${lang}
             }
         },
         "workExperience": *[_type == "workExperience" && _id == ^._ref][0]{

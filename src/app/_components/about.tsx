@@ -10,51 +10,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { Section, SkillCategory } from "@/types/sanity";
+import type { Section, SkillCategory, SocialMedia } from "@/types/sanity";
 import { motion } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
-import { Download, Github, Linkedin, Mail, User } from "lucide-react";
+import { Download, GithubIcon, User } from "lucide-react";
 import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 import { TypographyH1, TypographyP } from "./typography";
 
 // Types
-interface SocialLink {
-  icon: LucideIcon;
-  href: string;
-  label: string;
-  color: string;
-  description: string;
-}
-
-// Social Links Data
-const socialLinks: SocialLink[] = [
-  {
-    icon: Github,
-    href: "#",
-    label: "GitHub",
-    color:
-      "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-[#333] hover:border-[#333]",
-    description: "Check out my repositories",
-  },
-  {
-    icon: Linkedin,
-    href: "#",
-    label: "LinkedIn",
-    color:
-      "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-[#0077b5] hover:border-[#0077b5]",
-    description: "Connect with me",
-  },
-  {
-    icon: Mail,
-    href: "#",
-    label: "Email",
-    color:
-      "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-primary hover:border-primary",
-    description: "Get in touch",
-  },
-];
 
 // Profile Image Component
 const ProfileImage = ({ src, alt }: { src: string; alt: string }) => (
@@ -87,11 +51,15 @@ const ProfileImage = ({ src, alt }: { src: string; alt: string }) => (
   </motion.div>
 );
 
+export interface SocialLinksProps {
+  socialMedia: SocialMedia[];
+}
+
 // Social Links Component
-const SocialLinks = () => (
+const SocialLinks = ({ socialMedia }: SocialLinksProps) => (
   <div className="absolute -right-4 top-1/2 flex -translate-y-1/2 flex-col gap-4">
-    {socialLinks.map((social, index) => (
-      <SocialButton key={social.label} social={social} index={index} />
+    {socialMedia.map((social, index) => (
+      <SocialButton key={social.platform} social={social} index={index} />
     ))}
   </div>
 );
@@ -101,7 +69,7 @@ const SocialButton = ({
   social,
   index,
 }: {
-  social: SocialLink;
+  social: SocialMedia;
   index: number;
 }) => (
   <motion.div
@@ -116,11 +84,12 @@ const SocialButton = ({
           <Button
             size="icon"
             variant="outline"
-            className={`rounded-full shadow-lg ${social.color} transition-all duration-300 hover:text-white`}
+            // ${social.color}
+            className={`rounded-full shadow-lg transition-all duration-300 hover:text-white`}
             asChild
           >
-            <a href={social.href} target="_blank" rel="noopener noreferrer">
-              <social.icon className="h-5 w-5" />
+            <a href={social.url} target="_blank" rel="noopener noreferrer">
+              <GithubIcon />
             </a>
           </Button>
         </TooltipTrigger>
@@ -131,21 +100,21 @@ const SocialButton = ({
 );
 
 // Tooltip Content Component
-const SocialTooltipContent = ({ label, description }: Partial<SocialLink>) => (
+const SocialTooltipContent = ({ platform, tooltip }: Partial<SocialMedia>) => (
   <>
     <TooltipContent
       side="right"
       sideOffset={10}
       className="hidden border-2 border-primary/20 bg-background/95 px-4 py-3 shadow-xl backdrop-blur-sm md:block"
     >
-      <TooltipInner label={label} description={description} />
+      <TooltipInner label={platform} description={tooltip} />
     </TooltipContent>
     <TooltipContent
       side="left"
       sideOffset={10}
       className="border-2 border-primary/20 bg-background/95 px-4 py-3 shadow-xl backdrop-blur-sm md:hidden"
     >
-      <TooltipInner label={label} description={description} />
+      <TooltipInner label={platform} description={tooltip} />
     </TooltipContent>
   </>
 );
@@ -219,7 +188,7 @@ const About = ({
                 src={personalInfo.profileImage}
                 alt={personalInfo.fullName}
               />
-              <SocialLinks />
+              <SocialLinks socialMedia={personalInfo.socialMedia} />
             </div>
 
             <motion.div
