@@ -1,6 +1,19 @@
 import { i18n, Locale } from "@/config/i18n-config";
 import type { Metadata } from "next";
 import "./globals.css";
+import { Space_Grotesk, Urbanist } from "next/font/google";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space",
+});
+
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-urbanist",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,8 +34,11 @@ export default async function RootLayout(
 
   const { children } = props;
   return (
-    <html lang={params.lang}>
-      <body>{children}</body>
+    <html
+      lang={params.lang}
+      className={`${spaceGrotesk.variable} ${urbanist.variable}`}
+    >
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

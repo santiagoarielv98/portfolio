@@ -13,6 +13,7 @@ export default {
         "fade-in-down": "fadeInDown 1s ease-out",
         "fade-in-up": "fadeInUp 1s ease-out",
         blob: "blob 7s infinite",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
         fadeInDown: {
@@ -36,6 +37,10 @@ export default {
           "100%": {
             transform: "translate(0px, 0px) scale(1)",
           },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
       colors: {
@@ -84,6 +89,10 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["var(--font-urbanist)"],
+        display: ["var(--font-space)"],
       },
     },
   },
