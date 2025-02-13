@@ -23,14 +23,7 @@ export function SectionContainer({
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   return (
-    <section
-      ref={containerRef}
-      className={cn("relative py-32 overflow-hidden", className)}
-    >
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-
+    <section ref={containerRef} className={cn("relative py-32", className)}>
       {/* Parallax Decorations with variant */}
       <ParallaxDecorations variant={variant} />
 

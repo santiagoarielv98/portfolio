@@ -1,7 +1,7 @@
 "use client";
 
-import { Parallax } from "react-scroll-parallax";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 interface ParallaxDecorationsProps {
   variant?: "default" | "skills" | "work" | "projects" | "contact";
@@ -10,223 +10,90 @@ interface ParallaxDecorationsProps {
 export function ParallaxDecorations({
   variant = "default",
 }: ParallaxDecorationsProps) {
-  const getDecorations = () => {
-    switch (variant) {
-      case "skills":
-        return (
-          <>
-            <Parallax
-              translateY={[-30, 30]}
-              className="absolute -top-20 left-1/4"
-            >
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 90, 180],
-                }}
-                transition={{ duration: 15, repeat: Infinity }}
-                className="w-32 h-32 bg-primary/10 rounded-lg blur-2xl"
-              />
-            </Parallax>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <Parallax
-                key={i}
-                translateX={[`${-30 + i * 10}`, `${30 - i * 10}`]}
-                className={`absolute ${i % 2 === 0 ? "top-1/4" : "bottom-1/4"}`}
-              >
-                <motion.div
-                  animate={{ scale: [1, 1.5, 1] }}
-                  transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-                  className="w-3 h-3 bg-primary/20 rotate-45"
-                />
-              </Parallax>
-            ))}
-          </>
-        );
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
-      case "work":
-        return (
-          <>
-            <Parallax
-              translateY={[-20, 20]}
-              className="absolute top-1/3 right-1/4"
-            >
-              <motion.div
-                animate={{
-                  pathLength: [0, 1],
-                  opacity: [0.2, 1, 0.2],
-                }}
-                transition={{ duration: 10, repeat: Infinity }}
-                className="w-40 h-40 border-2 border-secondary/20 rounded-full"
-              />
-            </Parallax>
-            {Array.from({ length: 4 }).map((_, i) => (
-              <Parallax
-                key={i}
-                translateY={[`${-40 + i * 20}`, `${40 - i * 20}`]}
-                className="absolute"
-                style={{ left: `${25 + i * 20}%`, top: `${20 + i * 15}%` }}
-              >
-                <motion.div
-                  animate={{
-                    y: [0, 20, 0],
-                    opacity: [0.3, 1, 0.3],
-                  }}
-                  transition={{ duration: 3, delay: i * 0.5, repeat: Infinity }}
-                  className="w-1 h-20 bg-gradient-to-b from-secondary/30 to-transparent"
-                />
-              </Parallax>
-            ))}
-          </>
-        );
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const rotate2 = useTransform(scrollYProgress, [0, 1], [360, 0]);
 
-      case "projects":
-        return (
-          <>
-            {Array.from({ length: 3 }).map((_, i) => (
-              <Parallax
-                key={i}
-                translateX={[-50 + i * 30, 50 - i * 30]}
-                className="absolute"
-                style={{ top: `${30 + i * 20}%` }}
-              >
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{ duration: 20 - i * 5, repeat: Infinity }}
-                  className={`w-60 h-60 border-2 ${
-                    i % 2 === 0 ? "border-primary/10" : "border-secondary/10"
-                  } rounded-lg rotate-45 blur-xl`}
-                />
-              </Parallax>
-            ))}
-          </>
-        );
-
-      case "contact":
-        return (
-          <>
-            <Parallax translateY={[-15, 15]} className="absolute inset-0">
-              <div className="grid grid-cols-8 grid-rows-8 gap-8 opacity-20">
-                {Array.from({ length: 64 }).map((_, i) => (
-                  <motion.div
-                    key={i}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.1, 0.3, 0.1],
-                    }}
-                    transition={{
-                      duration: 3,
-                      delay: (i % 8) * 0.2,
-                      repeat: Infinity,
-                    }}
-                    className="w-2 h-2 bg-primary rounded-full"
-                  />
-                ))}
-              </div>
-            </Parallax>
-          </>
-        );
-
-      default:
-        return (
-          <>
-            {/* Original default decorations */}
-            <Parallax
-              translateY={[-20, 20]}
-              className="absolute -top-20 -left-20"
-            >
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 180, 360],
-                }}
-                transition={{ duration: 20, repeat: Infinity }}
-                className="w-40 h-40 bg-primary/10 rounded-full blur-3xl"
-              />
-            </Parallax>
-
-            <Parallax
-              translateY={[20, -20]}
-              className="absolute -bottom-20 -right-20"
-            >
-              <motion.div
-                animate={{
-                  scale: [1, 1.3, 1],
-                  rotate: [360, 180, 0],
-                }}
-                transition={{
-                  duration: 25,
-                  repeat: Infinity,
-                  easings: ["easeInOut"],
-                }}
-                className="w-40 h-40 bg-secondary/10 rounded-full blur-3xl"
-              />
-            </Parallax>
-
-            {/* Formas geométricas */}
-            <Parallax
-              rotateZ={[-45, 45]}
-              className="absolute top-1/4 right-1/4"
-            >
-              <div className="w-20 h-20 border-2 border-primary/20 rotate-45" />
-            </Parallax>
-
-            <Parallax
-              rotateZ={[45, -45]}
-              className="absolute bottom-1/4 left-1/4"
-            >
-              <div className="w-20 h-20 border-2 border-secondary/20 rotate-12" />
-            </Parallax>
-
-            {/* Líneas flotantes */}
-            <Parallax
-              translateX={[-50, 50]}
-              className="absolute top-1/3 left-0 right-0"
-            >
-              <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-            </Parallax>
-
-            <Parallax
-              translateX={[50, -50]}
-              className="absolute bottom-1/3 left-0 right-0"
-            >
-              <div className="h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent" />
-            </Parallax>
-
-            {/* Puntos flotantes */}
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Parallax
-                key={i}
-                translateY={[`${-50 + i * 20}`, `${50 - i * 20}`]}
-                className={`absolute ${
-                  i % 2 === 0 ? "left-1/4" : "right-1/4"
-                } top-${(i + 1) * 20}`}
-              >
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 3,
-                    delay: i * 0.2,
-                    repeat: Infinity,
-                  }}
-                  className="w-2 h-2 rounded-full bg-primary/30"
-                />
-              </Parallax>
-            ))}
-          </>
-        );
-    }
+  const decorations = {
+    default: (
+      <>
+        <div className="absolute inset-0 bg-grid-pattern opacity-15" />
+        <motion.div
+          style={{ rotate: rotate1 }}
+          className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-secondary/30 blur-3xl"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" />
+      </>
+    ),
+    skills: (
+      <>
+        <motion.div
+          style={{ y: y1, rotate: rotate1 }}
+          className="absolute -top-1/2 -left-1/2 w-[150%] h-[150%] bg-primary/30 rounded-full blur-3xl"
+        />
+        <motion.div
+          style={{ y: y2, rotate: rotate2 }}
+          className="absolute -bottom-1/2 -right-1/2 w-[150%] h-[150%] bg-accent/30 rounded-full blur-3xl"
+        />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.12]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
+      </>
+    ),
+    work: (
+      <>
+        <motion.div
+          style={{ y: y2, scale: 1.5 }}
+          className="absolute -top-1/4 left-0 w-full h-full bg-accent/40 rounded-[100%] blur-3xl"
+        />
+        <motion.div
+          style={{ y: y1, scale: 1.5 }}
+          className="absolute -bottom-1/4 right-0 w-full h-full bg-secondary/40 rounded-[100%] blur-3xl"
+        />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-background/60 to-background" />
+      </>
+    ),
+    projects: (
+      <>
+        <div className="absolute inset-0">
+          <motion.div
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-primary/35 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{ scale: [1.2, 1, 1.2] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute -bottom-1/2 -right-1/2 w-[200%] h-[200%] bg-accent/35 rounded-full blur-3xl"
+          />
+        </div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/40 to-background/80" />
+      </>
+    ),
+    contact: (
+      <>
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-gradient-conic from-primary/40 via-accent/40 to-secondary/40 blur-3xl"
+        />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-background/60 to-background" />
+      </>
+    ),
   };
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {getDecorations()}
+    <div ref={ref} className="absolute inset-0 overflow-hidden -z-10">
+      {decorations[variant]}
     </div>
   );
 }
