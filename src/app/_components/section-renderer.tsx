@@ -1,3 +1,5 @@
+"use client";
+
 import { Section } from "@/types/sanity";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -12,6 +14,9 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion"; // Necesitarás instalar framer-motion
+import { Download, Github, Linkedin, Mail } from "lucide-react"; // Necesitarás instalar lucide-react
+import { Button } from "@/components/ui/button"; // Necesitarás instalar este componente de shadcn/ui
 
 export interface SectionRendererProps {
   section: Section;
@@ -114,9 +119,6 @@ export function Hero({
       {/* Content */}
       <div className="relative z-10 text-center space-y-8 max-w-4xl mx-auto px-4">
         <div className="space-y-4">
-          <h2 className="text-xl font-medium text-muted-foreground tracking-wider animate-fade-in-down">
-            Welcome to my portfolio
-          </h2>
           <TypographyH1 className="animate-fade-in-up bg-gradient-to-r from-foreground to-primary/50 bg-clip-text text-transparent">
             {section.title}
           </TypographyH1>
@@ -169,27 +171,102 @@ const About = ({
   const { personalInfo } = section.content[0];
 
   return (
-    <section className="py-20">
-      <Card className="max-w-6xl mx-auto">
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
-          <div className="space-y-6">
-            <div>
-              <TypographyH1>{personalInfo.fullName}</TypographyH1>
-              <Badge variant="secondary" className="mt-2">
-                {personalInfo.professionalTitle}
-              </Badge>
-            </div>
-            <Separator />
-            <TypographyP>{personalInfo.bio}</TypographyP>
-          </div>
-          <div className="relative">
-            <Image
-              src={personalInfo.profileImage}
-              alt={personalInfo.fullName}
-              width={400}
-              height={400}
-              className="rounded-lg shadow-lg object-cover"
-            />
+    <section className="relative py-20 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-background/80 -z-10" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 -z-10" />
+
+      <Card className="relative max-w-6xl mx-auto backdrop-blur-sm bg-background/80 border-2">
+        <CardContent className="p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Image Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative group"
+            >
+              <div className="relative rounded-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent group-hover:from-primary/40 transition-all duration-300" />
+                <Image
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.fullName}
+                  width={500}
+                  height={500}
+                  className="rounded-2xl object-cover w-full aspect-square group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              {/* Social Links */}
+              <div className="absolute bottom-4 left-4 right-4 flex justify-center gap-4">
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  className="rounded-full bg-background/80 backdrop-blur"
+                >
+                  <Github className="h-5 w-5" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  className="rounded-full bg-background/80 backdrop-blur"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </Button>
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  className="rounded-full bg-background/80 backdrop-blur"
+                >
+                  <Mail className="h-5 w-5" />
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Content Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="space-y-6"
+            >
+              <div className="space-y-2">
+                <h3 className="text-lg font-medium text-muted-foreground">
+                  Nice to meet you! 👋
+                </h3>
+                <TypographyH1 className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+                  {personalInfo.fullName}
+                </TypographyH1>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="px-4 py-1">
+                    {personalInfo.professionalTitle}
+                  </Badge>
+                </div>
+              </div>
+
+              <Separator className="bg-primary/20" />
+
+              <div className="prose prose-neutral dark:prose-invert">
+                <TypographyP className="text-lg leading-relaxed">
+                  {personalInfo.bio}
+                </TypographyP>
+              </div>
+
+              {/* Resume Download */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Button className="group" variant="outline">
+                  <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                  Download Resume
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
         </CardContent>
       </Card>
