@@ -149,7 +149,7 @@ const About = ({
                     <Button
                       size="icon"
                       variant="secondary"
-                      className={`rounded-full bg-background/80 backdrop-blur ${social.color} hover:text-white transition-colors duration-300`}
+                      className={`rounded-full bg-background/80 backdrop-blur ${social.color} hover:text-white transition-colors duration-300 shadow-lg`}
                       asChild
                     >
                       <a
@@ -159,7 +159,7 @@ const About = ({
                         className="relative group"
                       >
                         <social.icon className="h-5 w-5" />
-                        <span className="absolute -right-2 translate-x-full px-2 py-1 ml-2 text-sm text-foreground bg-background rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                        <span className="absolute -right-2 translate-x-full px-2 py-1 ml-2 text-sm text-foreground bg-background rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
                           {social.label}
                         </span>
                       </a>
@@ -186,7 +186,7 @@ const About = ({
                 >
                   <Badge
                     variant="outline"
-                    className="px-4 py-1 text-lg font-display border-primary/30"
+                    className="px-4 py-1 text-lg font-display border-primary/30 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
                   >
                     Hello World! 👋
                   </Badge>
@@ -214,7 +214,7 @@ const About = ({
                       >
                         <Badge
                           variant="secondary"
-                          className="px-3 py-1 font-display"
+                          className="px-3 py-1 font-display shadow-md hover:shadow-lg transition-shadow"
                         >
                           {word}
                         </Badge>
@@ -237,7 +237,10 @@ const About = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button className="group font-display" variant="default">
+                  <Button
+                    className="group font-display shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow"
+                    variant="default"
+                  >
                     <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                     Download Resume
                   </Button>
@@ -247,7 +250,10 @@ const About = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button variant="outline" className="font-display">
+                  <Button
+                    variant="outline"
+                    className="font-display shadow hover:shadow-lg transition-shadow"
+                  >
                     <ExternalLink className="mr-2 h-4 w-4" />
                     View Portfolio
                   </Button>
@@ -269,7 +275,10 @@ const About = ({
                         viewport={{ once: true }}
                         transition={{ delay: 0.05 * index }}
                       >
-                        <Badge variant="outline" className="font-display">
+                        <Badge
+                          variant="outline"
+                          className="font-display shadow hover:shadow-md transition-shadow"
+                        >
                           {skill}
                         </Badge>
                       </motion.div>
