@@ -10,7 +10,7 @@ export function TypographyH1({
   return (
     <h1
       className={cn(
-        "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
+        "scroll-m-20 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight [text-wrap:balance]",
         className,
       )}
     >

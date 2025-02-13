@@ -31,14 +31,16 @@ export default async function RootLayout(
   }>,
 ) {
   const params = await props.params;
-
   const { children } = props;
+
   return (
     <html
       lang={params.lang}
-      className={`${spaceGrotesk.variable} ${urbanist.variable}`}
+      className={`${spaceGrotesk.variable} ${urbanist.variable} scroll-smooth`}
     >
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased min-h-screen bg-background text-foreground overflow-x-hidden">
+        <main className="relative">{children}</main>
+      </body>
     </html>
   );
 }
