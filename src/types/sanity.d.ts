@@ -87,7 +87,7 @@ export interface PersonalInfo {
   resume: string;
   _createdAt: Date;
   profileImage: string;
-  category: SkillCategory;
+  skillCategory: SkillCategory;
 }
 
 export interface Technology {

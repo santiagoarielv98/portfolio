@@ -17,7 +17,7 @@ export const getPageContent = async (lang: string) => {
             "bio": bio.${lang},
             "profileImage": profileImage.asset->url,
             "resume": resume.asset->url,
-            "category": category->{
+            "skillCategory": skillCategory->{
                 ...,
                 "name": name.${lang},
                 "skills": skills[]->{

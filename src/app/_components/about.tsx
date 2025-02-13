@@ -299,7 +299,7 @@ const About = ({
                 ))}
               </div>
 
-              <SkillsSection skill={personalInfo.category} />
+              <SkillsSection skill={personalInfo.skillCategory} />
             </motion.div>
           </div>
         </CardContent>
