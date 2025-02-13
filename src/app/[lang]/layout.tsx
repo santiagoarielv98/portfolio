@@ -1,6 +1,6 @@
 import { i18n, Locale } from "@/config/i18n-config";
 import type { Metadata } from "next";
-import './globals.css';
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,19 +11,18 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-export default async function RootLayout(props: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
-}>) {
-
+export default async function RootLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+    params: Promise<{ lang: Locale }>;
+  }>,
+) {
   const params = await props.params;
 
   const { children } = props;
   return (
     <html lang={params.lang}>
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

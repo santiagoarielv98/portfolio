@@ -2,7 +2,7 @@ import { Section } from "@/types/sanity";
 import { client } from "./client";
 
 export const getPageContent = async (lang: string) => {
-    const query = `*[_type == "section"] | order(order asc){
+  const query = `*[_type == "section"] | order(order asc){
       "identifier": identifier.current,
       "title": title.${lang},
       "description": description.${lang},
@@ -60,5 +60,5 @@ export const getPageContent = async (lang: string) => {
         }
     }`;
 
-    return client.fetch<Section[]>(query);
+  return client.fetch<Section[]>(query);
 };

@@ -1,194 +1,230 @@
-import { Section } from '@/types/sanity'
-import Image from 'next/image'
-import React from 'react'
+import { Section } from "@/types/sanity";
+import Image from "next/image";
+import React from "react";
 
 export interface SectionRendererProps {
-    section: Section
+  section: Section;
 }
 
 const SectionRenderer = (props: SectionRendererProps) => {
-    const { section } = props
+  const { section } = props;
 
-    switch (section.sectionType) {
-        case 'hero':
-            return <Hero section={section} />
-        case 'about':
-            return <About section={section} />
-        case 'workExperience':
-            return <WorkExperience section={section} />
-        case 'projects':
-            return <Projects section={section} />
-        case 'skills':
-            console.log(section)
-            return <Skills section={section} />
-        case 'education':
-            return <Education section={section} />
-        case 'contact':
-            return <Contact section={section} />
-        default:
-            return <div>Unknown section type: {section.sectionType}</div>
-    }
-}
+  switch (section.sectionType) {
+    case "hero":
+      return <Hero section={section} />;
+    case "about":
+      return <About section={section} />;
+    case "workExperience":
+      return <WorkExperience section={section} />;
+    case "projects":
+      return <Projects section={section} />;
+    case "skills":
+      return <Skills section={section} />;
+    case "education":
+      return <Education section={section} />;
+    case "contact":
+      return <Contact section={section} />;
+    default:
+      return null;
+  }
+};
 
-export default SectionRenderer
+export default SectionRenderer;
 
 export function TypographyH1({ children }: { children: React.ReactNode }) {
-    return (
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            {children}
-        </h1>
-    )
+  return (
+    <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+      {children}
+    </h1>
+  );
 }
 
 export function TypographyH2({ children }: { children: React.ReactNode }) {
-    return (
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            {children}
-        </h2>
-    )
+  return (
+    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+      {children}
+    </h2>
+  );
 }
 
 export function TypographyP({ children }: { children: React.ReactNode }) {
-    return (
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-            {children}
-        </p>
-    )
+  return <p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>;
 }
 
-
-export function Hero({ section }: { section: Section & { sectionType: 'hero' } }) {
-    return (
-        <section className="scroll-m-20">
-            <TypographyH1>{section.title}</TypographyH1>
-            <TypographyH2>{section.description}</TypographyH2>
-            <div>
-                {section.cta && (
-                    <a className="btn" href={section.cta.link}>
-                        {section.cta.text}
-                    </a>
-                )}
-            </div>
-        </section>
-    )
+export function Hero({
+  section,
+}: {
+  section: Section & { sectionType: "hero" };
+}) {
+  return (
+    <section className="scroll-m-20">
+      <TypographyH1>{section.title}</TypographyH1>
+      <TypographyH2>{section.description}</TypographyH2>
+      <div>
+        {section.cta && (
+          <a className="btn" href={section.cta.link}>
+            {section.cta.text}
+          </a>
+        )}
+      </div>
+    </section>
+  );
 }
 
 // Placeholder components for other sections
-const About = ({ section }: {
-    section: Section & {
-        sectionType: 'about',
-    }
+const About = ({
+  section,
+}: {
+  section: Section & {
+    sectionType: "about";
+  };
 }) => {
-    const { personalInfo } = section.content[0]
+  const { personalInfo } = section.content[0];
 
-    return (
-        <section className="scroll-m-20">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div>
-                    <TypographyH1>{personalInfo.fullName}</TypographyH1>
-                    <TypographyH2>{personalInfo.professionalTitle}</TypographyH2>
-                    <TypographyP>{personalInfo.bio}</TypographyP>
-                </div>
-                <div>
-                    <Image src={personalInfo.profileImage} alt={personalInfo.fullName}
-                        width={400} height={400}
-                    />
-                </div>
-            </div>
-        </section>
-    )
-}
-
-const WorkExperience = ({ section }: { section: Section & { sectionType: 'workExperience' } }) => (
-
-    <section>
-        <TypographyH1>{section.title}</TypographyH1>
-        {section.content.map((content, index) => {
-            const { workExperience } = content
-            const startDate = new Date(workExperience.startDate).toLocaleDateString()
-            const endDate = new Date(workExperience.endDate).toLocaleDateString()
-            return (
-                <div key={index}>
-                    <TypographyH2>{workExperience.position}</TypographyH2>
-                    <TypographyP>{workExperience.location}</TypographyP>
-                    <TypographyP>{startDate} - {endDate}</TypographyP>
-                    {/* <TypographyP>{workExperience.description}</TypographyP> */}
-                    <ul>
-                        {workExperience.description.map((description, index) => (
-                            <li key={index}>{description}</li>
-                        ))}
-                    </ul>
-                    <ul>
-                        {workExperience.technologies?.map((technology, index) => (
-                            <li key={index}>{technology.name}</li>
-                        ))}
-                    </ul>
-                </div>
-            )
-        }
-        )}
+  return (
+    <section className="scroll-m-20">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div>
+          <TypographyH1>{personalInfo.fullName}</TypographyH1>
+          <TypographyH2>{personalInfo.professionalTitle}</TypographyH2>
+          <TypographyP>{personalInfo.bio}</TypographyP>
+        </div>
+        <div>
+          <Image
+            src={personalInfo.profileImage}
+            alt={personalInfo.fullName}
+            width={400}
+            height={400}
+          />
+        </div>
+      </div>
     </section>
-)
+  );
+};
 
-const Projects = ({ section }: { section: Section & { sectionType: 'projects' } }) => (
-    <section>
-        <TypographyH1>{section.title}</TypographyH1>
-        {section.content.map((content, index) => {
-            const { project } = content
-            return (
-                <div key={index}>
-                    <Image src={project.featuredImage} alt={project.title}
-                        width={400} height={400}
-                    />
-                    <TypographyH2>{project.title}</TypographyH2>
-                    <TypographyP>{project.description}</TypographyP>
-                    <ul>
-                        {project.technologies?.map((technology, index) => (
-                            <li key={index}>{technology.name}</li>
-                        ))}
-                    </ul>
-                    <ul>
-                        <li><a href={project.links.live}>Live</a></li>
-                        <li><a href={project.links.repo}>Repo</a></li>
-                    </ul>
+const WorkExperience = ({
+  section,
+}: {
+  section: Section & { sectionType: "workExperience" };
+}) => (
+  <section>
+    <TypographyH1>{section.title}</TypographyH1>
+    {section.content.map((content, index) => {
+      const { workExperience } = content;
+      const startDate = new Date(workExperience.startDate).toLocaleDateString();
+      const endDate = new Date(workExperience.endDate).toLocaleDateString();
+      return (
+        <div key={index}>
+          <TypographyH2>{workExperience.position}</TypographyH2>
+          <TypographyP>{workExperience.location}</TypographyP>
+          <TypographyP>
+            {startDate} - {endDate}
+          </TypographyP>
+          {/* <TypographyP>{workExperience.description}</TypographyP> */}
+          <ul>
+            {workExperience.description.map((description, index) => (
+              <li key={index}>{description}</li>
+            ))}
+          </ul>
+          <ul>
+            {workExperience.technologies?.map((technology, index) => (
+              <li key={index}>{technology.name}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    })}
+  </section>
+);
 
-                </div>
-            )
-        })}
-    </section>
-)
+const Projects = ({
+  section,
+}: {
+  section: Section & { sectionType: "projects" };
+}) => (
+  <section>
+    <TypographyH1>{section.title}</TypographyH1>
+    {section.content.map((content, index) => {
+      const { project } = content;
+      return (
+        <div key={index}>
+          <Image
+            src={project.featuredImage}
+            alt={project.title}
+            width={400}
+            height={400}
+          />
+          <TypographyH2>{project.title}</TypographyH2>
+          <TypographyP>{project.description}</TypographyP>
+          <ul>
+            {project.technologies?.map((technology, index) => (
+              <li key={index}>{technology.name}</li>
+            ))}
+          </ul>
+          <ul>
+            <li>
+              <a href={project.links.live}>Live</a>
+            </li>
+            <li>
+              <a href={project.links.repo}>Repo</a>
+            </li>
+          </ul>
+        </div>
+      );
+    })}
+  </section>
+);
 
-const Skills = ({ section }: { section: Section & { sectionType: 'skills' } }) => (
-    <section>
-        <TypographyH1>{section.title}</TypographyH1>
-        {section.content.map((content, index) => {
-            const { skillCategory } = content
-            return (
-                <div key={index}>
-                    <TypographyH2>{skillCategory.name}</TypographyH2>
-                    <ul>
-                        {skillCategory.skills.map((skill, index) => (
-                            <li key={index}>{skill.name}</li>
-                        ))}
-                    </ul>
-                </div>
-            )
-        }
-        )}
-    </section>
-)
+const Skills = ({
+  section,
+}: {
+  section: Section & { sectionType: "skills" };
+}) => (
+  <section>
+    <TypographyH1>{section.title}</TypographyH1>
+    {section.content.map((content, index) => {
+      const { skillCategory } = content;
+      return (
+        <div key={index}>
+          <TypographyH2>{skillCategory.name}</TypographyH2>
+          <ul>
+            {skillCategory.skills.map((skill, index) => (
+              <li key={index}>{skill.name}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    })}
+  </section>
+);
 
-const Education = ({ section }: { section: Section }) => (
-    <section>
-        <TypographyH1>Education Section</TypographyH1>
-        <pre>{JSON.stringify(section, null, 2)}</pre>
-    </section>
-)
+const Education = ({
+  section,
+}: {
+  section: Section & { sectionType: "education" };
+}) => (
+  <section>
+    <TypographyH1>{section.title}</TypographyH1>
+    {section.content.map((content, index) => {
+      const { education } = content;
+      const startDate = new Date(education.startDate).toLocaleDateString();
+      const endDate = new Date(education.endDate).toLocaleDateString();
+      return (
+        <div key={index}>
+          <TypographyH2>{education.degree}</TypographyH2>
+          <TypographyP>{education.institution}</TypographyP>
+          <TypographyP>
+            {startDate} - {endDate}
+          </TypographyP>
+          <TypographyP>{education.description}</TypographyP>
+        </div>
+      );
+    })}
+  </section>
+);
 
 const Contact = ({ section }: { section: Section }) => (
-    <section>
-        <TypographyH1>Contact Section</TypographyH1>
-        <pre>{JSON.stringify(section, null, 2)}</pre>
-    </section>
-)
-
+  <section>
+    <TypographyH1>{section.title}</TypographyH1>
+  </section>
+);

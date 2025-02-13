@@ -1,7 +1,7 @@
-import { i18n, Locale } from '@/config/i18n-config';
-import { getPageContent } from '@/lib/sanity/queries';
-import React from 'react'
-import SectionRenderer from '../_components/section-renderer';
+import { i18n, Locale } from "@/config/i18n-config";
+import { getPageContent } from "@/lib/sanity/queries";
+import React from "react";
+import SectionRenderer from "../_components/section-renderer";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -18,7 +18,7 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
         <SectionRenderer key={section.identifier} section={section} />
       ))}
     </main>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
