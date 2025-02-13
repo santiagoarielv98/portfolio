@@ -12,10 +12,20 @@ export const getPageContent = async (lang: string) => {
         "personalInfo": *[_type == "personalInfo" && _id == ^._ref][0]{
             ...,
             "fullName": fullName.${lang},
+            "greating": greating.${lang},
             "professionalTitle": professionalTitle.${lang},
             "bio": bio.${lang},
             "profileImage": profileImage.asset->url,
             "resume": resume.asset->url,
+            "category": category->{
+                ...,
+                "name": name.${lang},
+                "skills": skills[]->{
+                    ...,
+                    "name": name.${lang},
+                    "level": level
+                }
+            }
         },
         "workExperience": *[_type == "workExperience" && _id == ^._ref][0]{
             ...,

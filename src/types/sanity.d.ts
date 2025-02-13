@@ -1,6 +1,5 @@
 export type HeroSection = {
   sectionType: "hero";
-  ctas: Cta[];
   description: string;
 };
 
@@ -35,6 +34,7 @@ export type ContactSection = {
 };
 
 export type Section = {
+  ctas: Cta[];
   identifier: string;
   title: string;
   subtitle: string;
@@ -79,12 +79,14 @@ export interface PersonalInfo {
   bio: string;
   _type: string;
   fullName: string;
+  greating: string;
   _id: string;
   _updatedAt: Date;
   professionalTitle: string;
   resume: string;
   _createdAt: Date;
   profileImage: string;
+  category: SkillCategory;
 }
 
 export interface Technology {
@@ -148,4 +150,9 @@ export enum Type {
 export interface Cta {
   text: string;
   action: string;
+}
+
+export interface Skill {
+  name: string;
+  level: number;
 }

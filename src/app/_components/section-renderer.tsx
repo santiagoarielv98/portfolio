@@ -18,9 +18,9 @@ const SectionRenderer = (props: SectionRendererProps) => {
 
   switch (section.sectionType) {
     case "hero":
-      console.log(section);
       return <Hero section={section} />;
     case "about":
+      console.log(section);
       return <About section={section} />;
     case "workExperience":
       return <WorkExperience section={section} />;

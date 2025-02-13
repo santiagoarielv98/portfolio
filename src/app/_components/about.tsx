@@ -10,17 +10,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { Section } from "@/types/sanity";
+import type { Section, SkillCategory } from "@/types/sanity";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import {
-  Download,
-  ExternalLink,
-  Github,
-  Linkedin,
-  Mail,
-  User,
-} from "lucide-react";
+import { Download, Github, Linkedin, Mail, User } from "lucide-react";
 import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
@@ -174,30 +167,31 @@ const TooltipInner = ({
 );
 
 // Skills Section Component
-const SkillsSection = () => (
+export interface SkillsSectionProps {
+  skill: SkillCategory;
+}
+const SkillsSection = ({ skill }: SkillsSectionProps) => (
   <div className="mt-8">
     <h3 className="mb-3 font-display text-sm text-muted-foreground">
-      TOP SKILLS
+      {skill.name}
     </h3>
     <div className="flex flex-wrap justify-start gap-2 md:justify-center">
-      {["React", "TypeScript", "Node.js", "Next.js", "UI/UX"].map(
-        (skill, index) => (
-          <motion.div
-            key={skill}
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.05 * index }}
+      {skill.skills?.map((skill, index) => (
+        <motion.div
+          key={skill.name}
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.05 * index }}
+        >
+          <Badge
+            variant="outline"
+            className="font-display shadow transition-shadow hover:shadow-md"
           >
-            <Badge
-              variant="outline"
-              className="font-display shadow transition-shadow hover:shadow-md"
-            >
-              {skill}
-            </Badge>
-          </motion.div>
-        ),
-      )}
+            {skill.name}
+          </Badge>
+        </motion.div>
+      ))}
     </div>
   </div>
 );
@@ -246,7 +240,7 @@ const About = ({
                     variant="outline"
                     className="border-primary/30 px-4 py-1 font-display text-lg shadow-lg shadow-primary/20 transition-shadow hover:shadow-primary/30"
                   >
-                    Hello World! 👋
+                    {personalInfo.greating}
                   </Badge>
                 </motion.div>
 
@@ -260,24 +254,20 @@ const About = ({
                   viewport={{ once: true }}
                   className="flex flex-wrap justify-start gap-2 md:justify-center"
                 >
-                  {personalInfo.professionalTitle
-                    .split(" ")
-                    .map((word, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 * index }}
+                  {
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      <Badge
+                        variant="secondary"
+                        className="px-3 py-1 font-display shadow-md transition-shadow hover:shadow-lg"
                       >
-                        <Badge
-                          variant="secondary"
-                          className="px-3 py-1 font-display shadow-md transition-shadow hover:shadow-lg"
-                        >
-                          {word}
-                        </Badge>
-                      </motion.div>
-                    ))}
+                        {personalInfo.professionalTitle}
+                      </Badge>
+                    </motion.div>
+                  }
                 </motion.div>
               </div>
 
@@ -290,34 +280,26 @@ const About = ({
               </div>
 
               <div className="flex flex-wrap justify-start gap-4 md:justify-center">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
-                    variant="default"
+                {section.ctas?.map((cta, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * index }}
                   >
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Resume
-                  </Button>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    variant="outline"
-                    className="font-display shadow transition-shadow hover:shadow-lg"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Portfolio
-                  </Button>
-                </motion.div>
+                    <Button
+                      className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
+                      variant="default"
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      {cta.text}
+                    </Button>
+                  </motion.div>
+                ))}
               </div>
 
-              <SkillsSection />
+              <SkillsSection skill={personalInfo.category} />
             </motion.div>
           </div>
         </CardContent>

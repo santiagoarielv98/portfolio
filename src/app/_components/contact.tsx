@@ -53,12 +53,14 @@ const ContactCard = ({
   </motion.a>
 );
 
-const Contact = ({
-  section,
-}: {
-  section: Section & { sectionType: "contact" };
-}) => {
-  console.log(section);
+const Contact = (
+  {
+    // section,
+  }: {
+    section: Section & { sectionType: "contact" };
+  },
+) => {
+  // console.log(section);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Implementar lógica de envío

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import type { Section } from "@/types/sanity";
-import { MoveDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Parallax } from "react-scroll-parallax";
 import { TypographyH1, TypographyH2 } from "./typography";
 
@@ -70,7 +70,7 @@ export function Hero({
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-4 animate-bounce">
-        <MoveDown className="h-8 w-8 text-muted-foreground" />
+        <ChevronDown className="h-8 w-8 text-muted-foreground" />
       </div>
     </section>
   );
