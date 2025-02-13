@@ -1,15 +1,18 @@
 import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ReactNode, useRef } from "react";
+import { ParallaxDecorations } from "./parallax-decorations";
 
 interface SectionContainerProps {
   children: ReactNode;
   className?: string;
+  variant?: "default" | "skills" | "work" | "projects" | "contact";
 }
 
 export function SectionContainer({
   children,
   className,
+  variant = "default",
 }: SectionContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -28,37 +31,14 @@ export function SectionContainer({
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
+      {/* Parallax Decorations with variant */}
+      <ParallaxDecorations variant={variant} />
+
       <motion.div
         style={{ opacity }}
         className="relative max-w-6xl mx-auto px-4"
       >
         {children}
-
-        {/* Decorative Elements */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            easings: ["easeInOut"],
-          }}
-          className="absolute -top-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            easings: ["easeInOut"],
-          }}
-          className="absolute -bottom-20 -left-20 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"
-        />
       </motion.div>
     </section>
   );

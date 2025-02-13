@@ -16,7 +16,7 @@ const Projects = ({
   section: Section & { sectionType: "projects" };
 }) => {
   return (
-    <SectionContainer>
+    <SectionContainer variant="projects">
       <SectionHeader
         title={section.title}
         subtitle="Featured Projects"

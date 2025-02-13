@@ -29,7 +29,7 @@ const About = ({
   const { personalInfo } = section.content[0];
 
   return (
-    <SectionContainer>
+    <SectionContainer variant="default">
       <SectionHeader title={section.title} subtitle="About Me" icon={User} />
 
       <Card className="relative max-w-6xl mx-auto backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50 transition-colors duration-500">

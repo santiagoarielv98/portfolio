@@ -63,7 +63,7 @@ const Contact = ({
   };
 
   return (
-    <SectionContainer>
+    <SectionContainer variant="contact">
       <SectionHeader
         title="Let's Work Together"
         subtitle="Get in Touch"

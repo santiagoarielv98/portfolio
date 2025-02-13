@@ -37,7 +37,7 @@ const Skills = ({
   section: Section & { sectionType: "skills" };
 }) => {
   return (
-    <SectionContainer>
+    <SectionContainer variant="skills">
       <SectionHeader
         title={section.title}
         subtitle="My Toolbox"

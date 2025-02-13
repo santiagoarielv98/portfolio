@@ -2,6 +2,7 @@ import { i18n, Locale } from "@/config/i18n-config";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Space_Grotesk, Urbanist } from "next/font/google";
+import { ParallaxProviderWrapper } from "../_providers/parallax-provider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -39,7 +40,9 @@ export default async function RootLayout(
       className={`${spaceGrotesk.variable} ${urbanist.variable} scroll-smooth`}
     >
       <body className="font-sans antialiased min-h-screen bg-background text-foreground overflow-x-hidden">
-        <main className="relative">{children}</main>
+        <ParallaxProviderWrapper>
+          <main className="relative">{children}</main>
+        </ParallaxProviderWrapper>
       </body>
     </html>
   );

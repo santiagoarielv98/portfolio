@@ -14,7 +14,7 @@ const WorkExperience = ({
   section: Section & { sectionType: "workExperience" };
 }) => {
   return (
-    <SectionContainer>
+    <SectionContainer variant="work">
       <SectionHeader
         title={section.title}
         subtitle="Professional Journey"
