@@ -3,6 +3,8 @@
 import { Section } from "@/types/sanity";
 import { TypographyH1, TypographyH2 } from "./typography";
 import { Parallax } from "react-scroll-parallax";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Rocket, ScrollText } from "lucide-react";
 
 export function Hero({
   section,
@@ -51,18 +53,27 @@ export function Hero({
         </Parallax>
 
         {section.cta && (
-          <div className="animate-fade-in-up animation-delay-500 pt-8">
-            <a
-              href={section.cta.link}
-              className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden rounded-full bg-primary transition-all hover:bg-primary/90"
+          <div className="animate-fade-in-up animation-delay-500 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              className="group relative overflow-hidden shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
             >
-              <span className="relative text-md font-semibold text-primary-foreground">
+              <span className="relative flex items-center gap-2">
+                <Rocket className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
                 {section.cta.text}
-                <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">
-                  →
-                </span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </span>
-            </a>
+              <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 transform translate-x-[-100%] group-hover:translate-x-[100%]" />
+            </Button>
+
+            <Button
+              variant="outline"
+              size="lg"
+              className="group shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <ScrollText className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
+              View Resume
+            </Button>
           </div>
         )}
       </div>

@@ -94,19 +94,22 @@ const About = ({
                     icon: Github,
                     href: "#",
                     label: "GitHub",
-                    color: "hover:bg-[#333]",
+                    color:
+                      "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-[#333] hover:border-[#333]",
                   },
                   {
                     icon: Linkedin,
                     href: "#",
                     label: "LinkedIn",
-                    color: "hover:bg-[#0077b5]",
+                    color:
+                      "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-[#0077b5] hover:border-[#0077b5]",
                   },
                   {
                     icon: Mail,
                     href: "#",
                     label: "Email",
-                    color: "hover:bg-primary",
+                    color:
+                      "bg-background/90 border-2 border-primary/50 text-foreground hover:bg-primary hover:border-primary",
                   },
                 ].map((social, index) => (
                   <motion.div
@@ -118,8 +121,8 @@ const About = ({
                   >
                     <Button
                       size="icon"
-                      variant="secondary"
-                      className={`rounded-full bg-background/80 backdrop-blur ${social.color} hover:text-white transition-colors duration-300 shadow-lg`}
+                      variant="outline"
+                      className={`rounded-full shadow-lg ${social.color} hover:text-white transition-all duration-300`}
                       asChild
                     >
                       <a
@@ -129,7 +132,7 @@ const About = ({
                         className="relative group"
                       >
                         <social.icon className="h-5 w-5" />
-                        <span className="absolute -right-2 translate-x-full px-2 py-1 ml-2 text-sm text-foreground bg-background rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
+                        <span className="absolute -right-2 translate-x-full px-2 py-1 ml-2 text-sm text-foreground bg-background/90 backdrop-blur-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
                           {social.label}
                         </span>
                       </a>
