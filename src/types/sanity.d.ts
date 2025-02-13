@@ -37,6 +37,7 @@ export type ContactSection = {
 export type Section = {
   identifier: string;
   title: string;
+  subtitle: string;
   layout: string;
   order: number;
 } & (

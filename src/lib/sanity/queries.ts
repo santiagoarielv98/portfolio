@@ -5,6 +5,7 @@ export const getPageContent = async (lang: string) => {
   const query = `*[_type == "section"] | order(order asc){
       "identifier": identifier.current,
       "title": title.${lang},
+      "subtitle": subtitle.${lang},
       "description": description.${lang},
       "sectionType": sectionType,
       "content": content[]{

@@ -36,10 +36,14 @@ const About = ({
 
   return (
     <SectionContainer variant="default">
-      <SectionHeader title={section.title} subtitle="About Me" icon={User} />
+      <SectionHeader
+        title={section.title}
+        subtitle={section.subtitle}
+        icon={User}
+      />
 
       <Card className="relative mx-auto max-w-6xl border-2 bg-background/80 backdrop-blur-sm transition-colors duration-500 hover:border-primary/50">
-        <CardContent className="p-8">
+        <CardContent className="overflow-hidden p-8">
           <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
             {/* Image Column with enhanced effects */}
             <motion.div
@@ -51,6 +55,7 @@ const About = ({
             >
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 {/* Decorative elements */}
+                {/* NO SE VISUALIZA */}
                 <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/20 blur-2xl transition-colors duration-500 group-hover:bg-primary/30" />
                 <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-secondary/20 blur-2xl transition-colors duration-500 group-hover:bg-secondary/30" />
 
@@ -76,7 +81,7 @@ const About = ({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/80 to-transparent p-6"
+                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/95 via-background/80 to-transparent p-3"
                 >
                   <div className="flex flex-wrap gap-4 rounded-lg p-3 text-sm backdrop-blur-sm">
                     <div className="flex items-center gap-2">
@@ -253,7 +258,7 @@ const About = ({
                     className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
                     variant="default"
                   >
-                    <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                    <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </Button>
                 </motion.div>
@@ -272,7 +277,6 @@ const About = ({
                 </motion.div>
               </div>
 
-              {/* Skills Preview - Removed tooltips */}
               <div className="mt-8">
                 <h3 className="mb-3 font-display text-sm text-muted-foreground">
                   TOP SKILLS
