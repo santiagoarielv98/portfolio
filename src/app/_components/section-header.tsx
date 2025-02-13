@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { TypographyH1 } from "./typography";
 import { cn } from "@/lib/utils";
 
@@ -23,21 +23,21 @@ export function SectionHeader({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={cn("text-center mb-16", className)}
+      className={cn("mb-16 text-center", className)}
     >
       <Badge
         variant="outline"
-        className="px-4 py-1 text-lg font-display mb-4 shadow-lg hover:shadow-xl transition-all glassmorphism border-primary/20 text-foreground"
+        className="glassmorphism mb-4 border-primary/20 px-4 py-1 font-display text-lg text-foreground shadow-lg transition-all hover:shadow-xl"
       >
-        <Icon className="w-4 h-4 mr-2" />
+        <Icon className="mr-2 h-4 w-4" />
         {subtitle}
       </Badge>
       <div className="relative flex items-center justify-center gap-4">
-        <div className="md:w-[200px] w-[50px] bg-gradient-to-r from-transparent to-primary/30 h-[2px]" />
-        <TypographyH1 className="relative font-display font-bold gradient-text">
+        <div className="h-[2px] w-[50px] bg-gradient-to-r from-transparent to-primary/30 md:w-[200px]" />
+        <TypographyH1 className="gradient-text relative font-display font-bold">
           {title}
         </TypographyH1>
-        <div className="md:w-[200px] w-[50px] bg-gradient-to-r from-primary/30 to-transparent h-[2px]" />
+        <div className="h-[2px] w-[50px] bg-gradient-to-r from-primary/30 to-transparent md:w-[200px]" />
       </div>
     </motion.div>
   );

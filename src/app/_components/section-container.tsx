@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ReactNode, useRef } from "react";
+import type { ReactNode } from "react";
+import { useRef } from "react";
 import { ParallaxDecorations } from "./parallax-decorations";
 
 interface SectionContainerProps {
@@ -29,7 +30,7 @@ export function SectionContainer({
 
       <motion.div
         style={{ opacity }}
-        className="relative max-w-6xl mx-auto px-4"
+        className="relative mx-auto max-w-6xl px-4"
       >
         {children}
       </motion.div>

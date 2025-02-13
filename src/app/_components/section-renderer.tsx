@@ -1,6 +1,6 @@
 "use client";
 
-import { Section } from "@/types/sanity";
+import type { Section } from "@/types/sanity";
 import About from "./about";
 import Education from "./education";
 import { Hero } from "./hero";

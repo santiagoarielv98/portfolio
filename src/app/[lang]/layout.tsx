@@ -1,4 +1,5 @@
-import { i18n, Locale } from "@/config/i18n-config";
+import type { Locale } from "@/config/i18n-config";
+import { i18n } from "@/config/i18n-config";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Space_Grotesk, Urbanist } from "next/font/google";
@@ -39,7 +40,7 @@ export default async function RootLayout(
       lang={params.lang}
       className={`${spaceGrotesk.variable} ${urbanist.variable} scroll-smooth`}
     >
-      <body className="font-sans antialiased min-h-screen bg-background text-foreground overflow-x-hidden">
+      <body className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground antialiased">
         <ParallaxProviderWrapper>
           <main className="relative">{children}</main>
         </ParallaxProviderWrapper>

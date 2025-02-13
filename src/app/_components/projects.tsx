@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Section } from "@/types/sanity";
+import type { Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import { CodeIcon, ExternalLink, Github, Rocket } from "lucide-react";
 import Image from "next/image";
@@ -23,7 +23,7 @@ const Projects = ({
         icon={CodeIcon}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {section.content.map((content, index) => {
           const { project } = content;
           return (
@@ -34,14 +34,14 @@ const Projects = ({
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="group h-full hover:shadow-2xl hover:shadow-primary/25 transition-all duration-500 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50 overflow-hidden">
+              <Card className="group h-full overflow-hidden border-2 bg-background/80 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/25">
                 {/* Image Container */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                   className="relative h-48 overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 z-10" />
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-60" />
                   <Image
                     src={project.featuredImage}
                     alt={project.title}
@@ -49,7 +49,7 @@ const Projects = ({
                     className="object-cover"
                   />
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="flex gap-4">
                       <Button
                         size="icon"
@@ -62,7 +62,7 @@ const Projects = ({
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Rocket className="w-5 h-5" />
+                          <Rocket className="h-5 w-5" />
                         </a>
                       </Button>
                       <Button
@@ -76,7 +76,7 @@ const Projects = ({
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Github className="w-5 h-5" />
+                          <Github className="h-5 w-5" />
                         </a>
                       </Button>
                     </div>
@@ -84,16 +84,16 @@ const Projects = ({
                 </motion.div>
 
                 <CardHeader>
-                  <CardTitle className="font-display flex items-center justify-between">
+                  <CardTitle className="flex items-center justify-between font-display">
                     <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                       {project.title}
                     </span>
-                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                    <ExternalLink className="h-4 w-4 text-muted-foreground transition-colors duration-300 group-hover:text-primary" />
                   </CardTitle>
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  <p className="text-sm text-muted-foreground line-clamp-2">
+                  <p className="line-clamp-2 text-sm text-muted-foreground">
                     {project.description}
                   </p>
 
@@ -108,7 +108,7 @@ const Projects = ({
                       >
                         <Badge
                           variant="secondary"
-                          className="shadow-sm hover:shadow-md transition-all duration-300 bg-secondary/10 hover:bg-secondary/20"
+                          className="bg-secondary/10 shadow-sm transition-all duration-300 hover:bg-secondary/20 hover:shadow-md"
                         >
                           {tech.name}
                         </Badge>

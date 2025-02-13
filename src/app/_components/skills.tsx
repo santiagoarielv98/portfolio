@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Section } from "@/types/sanity";
+import type { Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import {
   Code2,
@@ -25,15 +25,15 @@ import {
 } from "@/components/ui/tooltip";
 
 const categoryIcons = {
-  Frontend: <Layout className="w-6 h-6" />,
-  Backend: <Server className="w-6 h-6" />,
-  Database: <Database className="w-6 h-6" />,
-  Mobile: <Smartphone className="w-6 h-6" />,
-  DevOps: <Settings className="w-6 h-6" />,
-  Web: <Globe className="w-6 h-6" />,
-  Programming: <Code2 className="w-6 h-6" />,
-  SEO: <Search className="w-6 h-6" />,
-  "UI/UX": <Lightbulb className="w-6 h-6" />,
+  Frontend: <Layout className="h-6 w-6" />,
+  Backend: <Server className="h-6 w-6" />,
+  Database: <Database className="h-6 w-6" />,
+  Mobile: <Smartphone className="h-6 w-6" />,
+  DevOps: <Settings className="h-6 w-6" />,
+  Web: <Globe className="h-6 w-6" />,
+  Programming: <Code2 className="h-6 w-6" />,
+  SEO: <Search className="h-6 w-6" />,
+  "UI/UX": <Lightbulb className="h-6 w-6" />,
 };
 
 const categoryDescriptions = {
@@ -86,7 +86,7 @@ const Skills = ({
         icon={Lightbulb}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {section.content.map((content, index) => {
           const { skillCategory } = content;
           return (
@@ -98,23 +98,23 @@ const Skills = ({
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <Card className="h-full transform-gpu transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50">
+              <Card className="h-full transform-gpu border-2 bg-background/80 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/30">
                 <CardHeader className="space-y-4">
-                  <CardTitle className="font-display flex items-center gap-3">
+                  <CardTitle className="flex items-center gap-3 font-display">
                     <motion.div
                       whileHover={{ rotate: 180 }}
                       transition={{ duration: 0.3 }}
-                      className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors duration-300"
+                      className="rounded-xl bg-primary/10 p-2.5 text-primary transition-colors duration-300 group-hover:bg-primary/20"
                     >
                       {categoryIcons[
                         skillCategory.name as keyof typeof categoryIcons
-                      ] || <Code2 className="w-6 h-6" />}
+                      ] || <Code2 className="h-6 w-6" />}
                     </motion.div>
                     <div className="space-y-1">
-                      <span className="text-2xl bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-2xl text-transparent">
                         {skillCategory.name}
                       </span>
-                      <p className="text-sm text-muted-foreground font-normal">
+                      <p className="text-sm font-normal text-muted-foreground">
                         {
                           categoryDescriptions[
                             skillCategory.name as keyof typeof categoryDescriptions
@@ -141,7 +141,7 @@ const Skills = ({
                               <div>
                                 <Badge
                                   variant="secondary"
-                                  className="px-3 py-1.5 font-display shadow-sm hover:shadow-md transition-all duration-300 bg-secondary/20 hover:bg-secondary/30 cursor-help"
+                                  className="cursor-help bg-secondary/20 px-3 py-1.5 font-display shadow-sm transition-all duration-300 hover:bg-secondary/30 hover:shadow-md"
                                 >
                                   {skill.name}
                                 </Badge>
@@ -149,7 +149,7 @@ const Skills = ({
                             </TooltipTrigger>
                             {skill.level && (
                               <TooltipContent
-                                className="px-4 py-3 bg-background border-2 border-primary/20 shadow-xl backdrop-blur-md"
+                                className="border-2 border-primary/20 bg-background px-4 py-3 shadow-xl backdrop-blur-md"
                                 sideOffset={5}
                               >
                                 <div className="space-y-2">
@@ -162,7 +162,7 @@ const Skills = ({
                                     >
                                       {getLevelText(skill.level).text}
                                     </span>
-                                    <span className="text-muted-foreground text-sm">
+                                    <span className="text-sm text-muted-foreground">
                                       ({skill.level}%)
                                     </span>
                                   </div>

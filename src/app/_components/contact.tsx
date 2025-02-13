@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Section } from "@/types/sanity";
+import type { Section } from "@/types/sanity";
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 import {
   Github,
   Linkedin,
@@ -25,7 +26,7 @@ const ContactCard = ({
   value,
   href,
 }: {
-  icon: any;
+  icon: LucideIcon;
   title: string;
   value: string;
   href: string;
@@ -38,10 +39,10 @@ const ContactCard = ({
     rel="noopener noreferrer"
     className="group block"
   >
-    <Card className="p-4 hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 border-2 hover:border-primary/50">
+    <Card className="border-2 p-4 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/25">
       <div className="flex items-center gap-4">
-        <div className="p-2 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-          <Icon className="w-6 h-6" />
+        <div className="rounded-xl bg-primary/10 p-2 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+          <Icon className="h-6 w-6" />
         </div>
         <div>
           <p className="text-sm text-muted-foreground">{title}</p>
@@ -57,6 +58,7 @@ const Contact = ({
 }: {
   section: Section & { sectionType: "contact" };
 }) => {
+  console.log(section);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Implementar lógica de envío
@@ -70,25 +72,25 @@ const Contact = ({
         icon={MessageSquare}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
         {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <Card className="p-6 backdrop-blur-sm bg-background/80 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 border-2 hover:border-primary/50">
+          <Card className="border-2 bg-background/80 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-display">Name</label>
+                  <label className="font-display text-sm">Name</label>
                   <Input
                     placeholder="John Doe"
                     className="border-2 focus-visible:ring-primary"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-display">Email</label>
+                  <label className="font-display text-sm">Email</label>
                   <Input
                     type="email"
                     placeholder="john@example.com"
@@ -98,7 +100,7 @@ const Contact = ({
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-display">Subject</label>
+                <label className="font-display text-sm">Subject</label>
                 <Input
                   placeholder="How can I help you?"
                   className="border-2 focus-visible:ring-primary"
@@ -106,20 +108,20 @@ const Contact = ({
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-display">Message</label>
+                <label className="font-display text-sm">Message</label>
                 <Textarea
                   placeholder="Your message here..."
-                  className="min-h-[150px] border-2 focus-visible:ring-primary resize-none"
+                  className="min-h-[150px] resize-none border-2 focus-visible:ring-primary"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full font-display group"
+                className="group w-full font-display"
                 size="lg"
               >
                 Send Message
-                <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </form>
           </Card>
@@ -186,19 +188,19 @@ const Contact = ({
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-4 flex items-center justify-center rounded-xl border-2 transition-all duration-300 ${social.color}`}
+                className={`flex items-center justify-center rounded-xl border-2 p-4 transition-all duration-300 ${social.color}`}
               >
-                <social.icon className="w-6 h-6" />
+                <social.icon className="h-6 w-6" />
               </motion.a>
             ))}
           </div>
 
           {/* Availability Card */}
-          <Card className="p-6 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20">
+          <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6">
             <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="w-3 h-3 bg-green-500 rounded-full" />
-                <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75" />
+                <div className="h-3 w-3 rounded-full bg-green-500" />
+                <div className="absolute inset-0 animate-ping rounded-full bg-green-500 opacity-75" />
               </div>
               <div>
                 <h4 className="font-display text-primary">

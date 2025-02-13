@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Section } from "@/types/sanity";
+import type { Section } from "@/types/sanity";
 import { MoveDown } from "lucide-react";
 import { Parallax } from "react-scroll-parallax";
 import { TypographyH1, TypographyH2 } from "./typography";
@@ -12,33 +12,33 @@ export function Hero({
   section: Section & { sectionType: "hero" };
 }) {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/20" />
 
       <Parallax
         translateY={[-20, 20]}
-        className="absolute top-20 left-10 w-72 h-72"
+        className="absolute left-10 top-20 h-72 w-72"
       >
-        <div className="bg-primary/10 rounded-full mix-blend-multiply filter blur-xl animate-blob size-full" />
+        <div className="size-full animate-blob rounded-full bg-primary/10 mix-blend-multiply blur-xl filter" />
       </Parallax>
 
       <Parallax
         translateY={[20, -20]}
-        className="absolute top-40 right-10 w-72 h-72"
+        className="absolute right-10 top-40 h-72 w-72"
       >
-        <div className="bg-secondary/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000 size-full" />
+        <div className="animation-delay-2000 size-full animate-blob rounded-full bg-secondary/10 mix-blend-multiply blur-xl filter" />
       </Parallax>
 
       <Parallax
         translateY={[-30, 40]}
-        className="absolute -bottom-8 left-20 w-72 h-72"
+        className="absolute -bottom-8 left-20 h-72 w-72"
       >
-        <div className="bg-accent/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000 size-full" />
+        <div className="animation-delay-4000 size-full animate-blob rounded-full bg-accent/10 mix-blend-multiply blur-xl filter" />
       </Parallax>
 
       {/* Content */}
-      <div className="relative z-10 text-center space-y-8 max-w-4xl mx-auto px-4">
+      <div className="relative z-10 mx-auto max-w-4xl space-y-8 px-4 text-center">
         <Parallax translateY={[-20, 20]} className="space-y-4">
           <TypographyH1 className="animate-fade-in-up bg-gradient-to-r from-foreground to-primary/50 bg-clip-text text-transparent">
             {section.title}
@@ -46,21 +46,21 @@ export function Hero({
         </Parallax>
 
         <Parallax translateY={[20, -20]} opacity={[0.5, 1]}>
-          <TypographyH2 className="animate-fade-in-up animation-delay-300 font-light leading-relaxed max-w-2xl mx-auto">
+          <TypographyH2 className="animation-delay-300 mx-auto max-w-2xl animate-fade-in-up font-light leading-relaxed">
             {section.description}
           </TypographyH2>
         </Parallax>
 
-        <div className="w-full max-w-2xl mx-auto py-6">
+        <div className="mx-auto w-full max-w-2xl py-6">
           <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         </div>
 
-        <div className="animate-fade-in-up animation-delay-500 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="animation-delay-500 flex animate-fade-in-up flex-col items-center justify-center gap-4 sm:flex-row">
           {section.ctas?.map((cta, index) => (
             <Button
               key={index}
               size="lg"
-              className="shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40  hover:scale-105 font-display"
+              className="font-display shadow-lg shadow-primary/25 hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
             >
               {cta.text}
             </Button>
@@ -81,7 +81,7 @@ export function Hero({
         >
           <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg> */}
-        <MoveDown className="w-8 h-8 text-muted-foreground" />
+        <MoveDown className="h-8 w-8 text-muted-foreground" />
       </div>
     </section>
   );

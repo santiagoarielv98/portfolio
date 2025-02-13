@@ -1,4 +1,5 @@
-import { i18n, Locale } from "@/config/i18n-config";
+import type { Locale } from "@/config/i18n-config";
+import { i18n } from "@/config/i18n-config";
 import { getPageContent } from "@/lib/sanity/queries";
 import React from "react";
 import SectionRenderer from "../_components/section-renderer";

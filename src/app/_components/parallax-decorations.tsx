@@ -24,7 +24,7 @@ export function ParallaxDecorations({
   const decorations = {
     default: (
       <>
-        <div className="absolute inset-0 bg-grid-pattern opacity-15" />
+        <div className="bg-grid-pattern absolute inset-0 opacity-15" />
         <motion.div
           style={{ rotate: rotate1 }}
           className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-secondary/30 blur-3xl"
@@ -36,13 +36,13 @@ export function ParallaxDecorations({
       <>
         <motion.div
           style={{ y: y1, rotate: rotate1 }}
-          className="absolute -top-1/2 -left-1/2 w-[150%] h-[150%] bg-primary/30 rounded-full blur-3xl"
+          className="absolute -left-1/2 -top-1/2 h-[150%] w-[150%] rounded-full bg-primary/30 blur-3xl"
         />
         <motion.div
           style={{ y: y2, rotate: rotate2 }}
-          className="absolute -bottom-1/2 -right-1/2 w-[150%] h-[150%] bg-accent/30 rounded-full blur-3xl"
+          className="absolute -bottom-1/2 -right-1/2 h-[150%] w-[150%] rounded-full bg-accent/30 blur-3xl"
         />
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.12]" />
+        <div className="bg-grid-pattern absolute inset-0 opacity-[0.12]" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
       </>
     ),
@@ -50,14 +50,14 @@ export function ParallaxDecorations({
       <>
         <motion.div
           style={{ y: y2, scale: 1.5 }}
-          className="absolute -top-1/4 left-0 w-full h-full bg-accent/40 rounded-[100%] blur-3xl"
+          className="absolute -top-1/4 left-0 h-full w-full rounded-[100%] bg-accent/40 blur-3xl"
         />
         <motion.div
           style={{ y: y1, scale: 1.5 }}
-          className="absolute -bottom-1/4 right-0 w-full h-full bg-secondary/40 rounded-[100%] blur-3xl"
+          className="absolute -bottom-1/4 right-0 h-full w-full rounded-[100%] bg-secondary/40 blur-3xl"
         />
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-background/60 to-background" />
+        <div className="bg-grid-pattern absolute inset-0 opacity-[0.08]" />
+        <div className="bg-gradient-radial absolute inset-0 from-transparent via-background/60 to-background" />
       </>
     ),
     projects: (
@@ -66,15 +66,15 @@ export function ParallaxDecorations({
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 8, repeat: Infinity }}
-            className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-primary/35 rounded-full blur-3xl"
+            className="absolute -left-1/2 -top-1/2 h-[200%] w-[200%] rounded-full bg-primary/35 blur-3xl"
           />
           <motion.div
             animate={{ scale: [1.2, 1, 1.2] }}
             transition={{ duration: 8, repeat: Infinity }}
-            className="absolute -bottom-1/2 -right-1/2 w-[200%] h-[200%] bg-accent/35 rounded-full blur-3xl"
+            className="absolute -bottom-1/2 -right-1/2 h-[200%] w-[200%] rounded-full bg-accent/35 blur-3xl"
           />
         </div>
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
+        <div className="bg-grid-pattern absolute inset-0 opacity-[0.08]" />
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/40 to-background/80" />
       </>
     ),
@@ -83,16 +83,16 @@ export function ParallaxDecorations({
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-gradient-conic from-primary/40 via-accent/40 to-secondary/40 blur-3xl"
+          className="bg-gradient-conic absolute -left-1/2 -top-1/2 h-[200%] w-[200%] from-primary/40 via-accent/40 to-secondary/40 blur-3xl"
         />
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-background/60 to-background" />
+        <div className="bg-grid-pattern absolute inset-0 opacity-[0.08]" />
+        <div className="bg-gradient-radial absolute inset-0 from-transparent via-background/60 to-background" />
       </>
     ),
   };
 
   return (
-    <div ref={ref} className="absolute inset-0 overflow-hidden -z-10">
+    <div ref={ref} className="absolute inset-0 -z-10 overflow-hidden">
       {decorations[variant]}
     </div>
   );

@@ -1,4 +1,4 @@
-import { Section } from "@/types/sanity";
+import type { Section } from "@/types/sanity";
 import { client } from "./client";
 
 export const getPageContent = async (lang: string) => {
