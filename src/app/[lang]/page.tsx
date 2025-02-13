@@ -12,11 +12,10 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
 
   const data = await getPageContent(lang);
 
-
   return (
     <main>
       {data.map((section) => (
-        <SectionRenderer key={section._id} section={section} />
+        <SectionRenderer key={section.identifier} section={section} />
       ))}
     </main>
   )

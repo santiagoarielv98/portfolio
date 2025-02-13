@@ -8,7 +8,6 @@ export const getPageContent = async (lang: string) => {
       "description": description.${lang},
       "sectionType": sectionType,
       "content": content[]{
-        ...,
         "personalInfo": *[_type == "personalInfo" && _id == ^._ref][0]{
             ...,
             "fullName": fullName.${lang},
@@ -52,7 +51,10 @@ export const getPageContent = async (lang: string) => {
       },
       "layout": layout,
       "order": order,
-      "cta": cta
+      "cta": {
+        "text": cta.text.${lang},
+        "link": cta.link
+        }
     }`;
 
     return client.fetch<Section[]>(query);

@@ -1,6 +1,8 @@
 import { Section } from '@/types/sanity'
 import React from 'react'
 
+import { HeroSection } from '@/types/sanity'
+
 export interface SectionRendererProps {
     section: Section
 }
@@ -32,11 +34,23 @@ export function TypographyH2({ children }: { children: React.ReactNode }) {
 }
 
 
-export function HeroSection() {
-    // title, subtitle, cta
+export interface HeroProps {
+    section: Section & HeroSection
+}
+
+export function Hero({ section }: HeroProps) {
+
     return (
         <section className="scroll-m-20">
-
+            <TypographyH1>{section.title}</TypographyH1>
+            <TypographyH2>{section.description}</TypographyH2>
+            <div>
+                {section.cta && (
+                    <a className="btn" href={section.cta.link}>
+                        {section.cta.text}
+                    </a>
+                )}
+            </div>
         </section>
     )
 }
