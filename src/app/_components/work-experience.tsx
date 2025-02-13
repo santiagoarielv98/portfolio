@@ -50,7 +50,7 @@ const WorkExperience = ({
                 <div className="h-[2px] w-4 bg-gradient-to-r from-primary to-transparent" />
               </div>
 
-              <Card className="relative transform-gpu transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl bg-background/95 border-2 hover:border-primary/50">
+              <Card className="relative transform-gpu transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/20 bg-background/95 border-2 hover:border-primary/50">
                 <CardHeader className="space-y-4">
                   <div className="flex flex-col sm:flex-row gap-4 items-start justify-between">
                     <div className="space-y-1">

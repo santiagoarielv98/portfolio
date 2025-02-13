@@ -62,7 +62,7 @@ export function Hero({
             <div className="animate-fade-in-up animation-delay-500 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 size="lg"
-                className="group relative overflow-hidden shadow-lg shadow-primary/25 hover:shadow-primary/50 transition-all duration-300 hover:scale-105"
+                className="group relative overflow-hidden shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 hover:scale-105 font-display"
               >
                 <span className="relative flex items-center gap-2">
                   <Rocket className="w-5 h-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
@@ -75,7 +75,7 @@ export function Hero({
               <Button
                 variant="outline"
                 size="lg"
-                className="group shadow-lg hover:shadow-xl transition-all duration-300"
+                className="group shadow-lg hover:shadow-xl shadow-primary/10 hover:shadow-primary/30 transition-all duration-300 font-display"
               >
                 <ScrollText className="w-5 h-5 mr-2 transition-transform group-hover:scale-110" />
                 View Resume

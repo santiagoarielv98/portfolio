@@ -34,7 +34,7 @@ const Projects = ({
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="group h-full hover:shadow-2xl transition-all duration-500 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50 overflow-hidden">
+              <Card className="group h-full hover:shadow-2xl hover:shadow-primary/25 transition-all duration-500 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50 overflow-hidden">
                 {/* Image Container */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}

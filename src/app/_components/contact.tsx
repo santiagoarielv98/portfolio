@@ -38,7 +38,7 @@ const ContactCard = ({
     rel="noopener noreferrer"
     className="group block"
   >
-    <Card className="p-4 hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
+    <Card className="p-4 hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 border-2 hover:border-primary/50">
       <div className="flex items-center gap-4">
         <div className="p-2 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
           <Icon className="w-6 h-6" />
@@ -77,7 +77,7 @@ const Contact = ({
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <Card className="p-6 backdrop-blur-sm bg-background/80">
+          <Card className="p-6 backdrop-blur-sm bg-background/80 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 border-2 hover:border-primary/50">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">

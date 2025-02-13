@@ -98,7 +98,7 @@ const Skills = ({
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <Card className="h-full transform-gpu transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50">
+              <Card className="h-full transform-gpu transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50">
                 <CardHeader className="space-y-4">
                   <CardTitle className="font-display flex items-center gap-3">
                     <motion.div

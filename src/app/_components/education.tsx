@@ -41,7 +41,7 @@ const Education = ({
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
             >
-              <Card className="group hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50">
+              <Card className="group hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50">
                 <CardHeader className="space-y-4">
                   <div className="flex items-start justify-between">
                     <motion.div
