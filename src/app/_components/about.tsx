@@ -14,9 +14,12 @@ import {
   Linkedin,
   Mail,
   MapPin,
+  User,
 } from "lucide-react"; // Necesitarás instalar lucide-react
 import Image from "next/image";
 import { TypographyH1, TypographyP } from "./typography";
+import { SectionContainer } from "./section-container";
+import { SectionHeader } from "./section-header";
 
 const About = ({
   section,
@@ -26,41 +29,8 @@ const About = ({
   const { personalInfo } = section.content[0];
 
   return (
-    <section className="relative py-32 overflow-hidden">
-      {/* Parallax Background with enhanced effects */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 -z-10"
-      >
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            easings: ["easeInOut"],
-          }}
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-primary/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, -5, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            easings: ["easeInOut"],
-          }}
-          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-secondary/10 rounded-full blur-3xl"
-        />
-      </motion.div>
+    <SectionContainer>
+      <SectionHeader title={section.title} subtitle="About Me" icon={User} />
 
       <Card className="relative max-w-6xl mx-auto backdrop-blur-sm bg-background/80 border-2 hover:border-primary/50 transition-colors duration-500">
         <CardContent className="p-8">
@@ -290,7 +260,7 @@ const About = ({
           </div>
         </CardContent>
       </Card>
-    </section>
+    </SectionContainer>
   );
 };
 

@@ -1,13 +1,13 @@
 "use client";
 
 import { Section } from "@/types/sanity";
-import { Contact } from "lucide-react";
 import About from "./about";
 import Education from "./education";
 import { Hero } from "./hero";
 import Projects from "./projects";
 import Skills from "./skills";
 import WorkExperience from "./work-experience";
+import Contact from "./contact";
 
 export interface SectionRendererProps {
   section: Section;
