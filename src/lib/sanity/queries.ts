@@ -39,7 +39,12 @@ export const getPageContent = async (lang: string) => {
         },
         "skillCategory": *[_type == "skillCategory" && _id == ^._ref][0]{
             ...,
-            "name": name.${lang}
+            "name": name.${lang},
+            "skills": *[_type == "skill" && references(^._id)]{
+                ...,
+                "name": name.${lang},
+                "level": level
+            }
         },
         "education": *[_type == "education" && _id == ^._ref][0]{
             ...,

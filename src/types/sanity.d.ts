@@ -19,12 +19,17 @@ export type ProjectSection = {
     content: Array<{ project: Project }>
 }
 
+export type SkillCategorySection = {
+    sectionType: "skills";
+    content: Array<{ skillCategory: SkillCategory }>
+}
+
 export type Section = {
     identifier: string;
     title: string;
     layout: string;
     order: number;
-} & (HeroSection | AboutSection | WorkExperienceSection | ProjectSection);
+} & (HeroSection | AboutSection | WorkExperienceSection | ProjectSection | SkillCategorySection);
 
 export interface Content {
     _key: string;
@@ -98,6 +103,7 @@ export interface SkillCategory {
     _id: string;
     _updatedAt: Date;
     _createdAt: Date;
+    skills: Skill[];
 }
 
 export interface WorkExperience {

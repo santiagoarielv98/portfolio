@@ -158,10 +158,23 @@ const Projects = ({ section }: { section: Section & { sectionType: 'projects' } 
     </section>
 )
 
-const Skills = ({ section }: { section: Section }) => (
+const Skills = ({ section }: { section: Section & { sectionType: 'skills' } }) => (
     <section>
-        <TypographyH1>Skills Section</TypographyH1>
-        <pre>{JSON.stringify(section, null, 2)}</pre>
+        <TypographyH1>{section.title}</TypographyH1>
+        {section.content.map((content, index) => {
+            const { skillCategory } = content
+            return (
+                <div key={index}>
+                    <TypographyH2>{skillCategory.name}</TypographyH2>
+                    <ul>
+                        {skillCategory.skills.map((skill, index) => (
+                            <li key={index}>{skill.name}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        }
+        )}
     </section>
 )
 
