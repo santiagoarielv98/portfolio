@@ -124,6 +124,25 @@ export interface ExperienceContent {
 
 export interface ProjectContent {
   _type: "project";
+  title: string;
+  description: string;
+  thumbnail: SanityImage;
+  gallery: SanityImage[];
+  skills: Array<{
+    name: string;
+    icon: {
+      name: string;
+      icon: string;
+    };
+    proficiency: number;
+    tooltip: string;
+  }>;
+  links: {
+    documentation: string;
+    source: string;
+    live: string;
+  };
+  featured: boolean;
 }
 
 export interface SkillCategoryContent {

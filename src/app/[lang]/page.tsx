@@ -4,6 +4,7 @@ import { getPortfolio } from "@/lib/sanity/queries";
 import { Hero } from "../_components/hero";
 import About from "../_components/about";
 import WorkExperience from "../_components/work-experience";
+import Projects from "../_components/projects";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -28,10 +29,12 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
           />
         );
       case "experience":
-        console.log(section);
         return (
           <WorkExperience key={section.identifier.current} section={section} />
         );
+      case "projects":
+        console.log(section);
+        return <Projects key={section.identifier.current} section={section} />;
       default:
         return null;
     }

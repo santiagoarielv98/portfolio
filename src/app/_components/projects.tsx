@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Section } from "@/types/sanity";
+import type { ProjectContent, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import { CodeIcon, ExternalLink, Github, Rocket } from "lucide-react";
 import Image from "next/image";
@@ -11,11 +11,7 @@ import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 import Link from "next/link";
 
-const Projects = ({
-  section,
-}: {
-  section: Section & { sectionType: "projects" };
-}) => {
+const Projects = ({ section }: { section: Section }) => {
   return (
     <SectionContainer variant="projects">
       <SectionHeader
@@ -26,7 +22,7 @@ const Projects = ({
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {section.content.map((content, index) => {
-          const { project } = content;
+          const project = content as ProjectContent;
           return (
             <motion.div
               key={index}
@@ -44,7 +40,7 @@ const Projects = ({
                 >
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-background to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-60" />
                   <Image
-                    src={project.featuredImage}
+                    src={project.thumbnail.url}
                     alt={project.title}
                     fill
                     className="object-cover"
@@ -73,7 +69,7 @@ const Projects = ({
                         className="rounded-full"
                       >
                         <a
-                          href={project.links.repo}
+                          href={project.links.source}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -101,7 +97,7 @@ const Projects = ({
                   </p>
 
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies?.map((tech, idx) => (
+                    {project.skills?.map((tech, idx) => (
                       <motion.div
                         key={idx}
                         initial={{ opacity: 0, scale: 0.8 }}
