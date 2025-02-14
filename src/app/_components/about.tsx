@@ -1,5 +1,6 @@
 "use client";
 
+import { getIcon } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 import type { Profile, Section, Social, TopSKill } from "@/types/sanity";
 import { motion } from "framer-motion";
-import { GithubIcon, User } from "lucide-react";
+import { User } from "lucide-react";
 import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
@@ -65,33 +66,37 @@ const ListSocial = ({ socials }: SocialLinksProps) => (
 );
 
 // Social Button Component
-const SocialButton = ({ social, index }: { social: Social; index: number }) => (
-  <motion.div
-    initial={{ opacity: 0, x: 20 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: 0.2 + index * 0.1 }}
-  >
-    <TooltipProvider>
-      <Tooltip delayDuration={100}>
-        <TooltipTrigger asChild>
-          <Button
-            size="icon"
-            variant="outline"
-            // ${social.color}
-            className={`rounded-full shadow-lg transition-all duration-300 hover:text-white`}
-            asChild
-          >
-            <a href={social.url} target="_blank" rel="noopener noreferrer">
-              <GithubIcon />
-            </a>
-          </Button>
-        </TooltipTrigger>
-        <SocialTooltipContent {...social} />
-      </Tooltip>
-    </TooltipProvider>
-  </motion.div>
-);
+const SocialButton = ({ social, index }: { social: Social; index: number }) => {
+  const Icon = getIcon(social.icon.icon);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.2 + index * 0.1 }}
+    >
+      <TooltipProvider>
+        <Tooltip delayDuration={100}>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              variant="outline"
+              // ${social.color}
+              className={`rounded-full shadow-lg transition-all duration-300 hover:text-white`}
+              asChild
+            >
+              <a href={social.url} target="_blank" rel="noopener noreferrer">
+                <Icon className="h-6 w-6" />
+              </a>
+            </Button>
+          </TooltipTrigger>
+          <SocialTooltipContent {...social} />
+        </Tooltip>
+      </TooltipProvider>
+    </motion.div>
+  );
+};
 
 // Tooltip Content Component
 const SocialTooltipContent = ({ platform, tooltip }: Partial<Social>) => (
@@ -240,22 +245,26 @@ const About = ({
               </div>
 
               <div className="flex flex-wrap justify-start gap-4 md:justify-center">
-                {section.actions?.map((cta, index) => (
-                  <motion.div
-                    key={cta.action}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * index }}
-                  >
-                    <Button
-                      className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
-                      variant="default"
+                {section.actions?.map((cta, index) => {
+                  const Icon = getIcon(cta.icon.icon);
+                  return (
+                    <motion.div
+                      key={cta.action}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * index }}
                     >
-                      {cta.label}
-                    </Button>
-                  </motion.div>
-                ))}
+                      <Button
+                        className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
+                        variant="default"
+                      >
+                        <Icon className="h-6 w-6" />
+                        {cta.label}
+                      </Button>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               <SkillsSection topSkill={profile.topSkills} />

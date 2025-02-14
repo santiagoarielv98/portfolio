@@ -16,14 +16,13 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
   const { lang } = await params;
 
   const data = await getPortfolio(lang);
-  // console.log(data);
 
   const components = data.raw.sections.map((section) => {
     switch (section.type) {
       case "hero":
-        console.log(section);
         return <Hero key={section.identifier.current} section={section} />;
       case "about":
+        console.log(data.raw.profile);
         return (
           <About
             key={section.identifier.current}

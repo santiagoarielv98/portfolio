@@ -35,11 +35,11 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
         "label": ${localizedField("label", lang)},
         "value": ${localizedField("value", lang)}
       },
-      socials[] {
+      socials[]->{
         platform,
         url,
         "tooltip": ${localizedField("tooltip", lang)},
-        icon
+        icon->
       }
     },
     "availability": *[_type == "availabilityStatus" && _id == ^.availability._ref][0] {
@@ -58,7 +58,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
     actions[]-> {
       action,
       "label": ${localizedField("label", lang)},
-      icon
+      icon->
     },
     "content": content[]-> {
       _type,

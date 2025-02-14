@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { Parallax } from "react-scroll-parallax";
 import { TypographyH1, TypographyH2 } from "./typography";
 import { Button } from "@/components/ui/button";
+import { getIcon } from "@/components/icons";
 
 export function Hero({ section }: { section: Section }) {
   return (
@@ -52,15 +53,20 @@ export function Hero({ section }: { section: Section }) {
         </div>
 
         <div className="animation-delay-500 flex animate-fade-in-up flex-col items-center justify-center gap-4 sm:flex-row">
-          {section.actions?.map((cta, index) => (
-            <Button
-              key={index}
-              size="lg"
-              className="font-display shadow-lg shadow-primary/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
-            >
-              {cta.label}
-            </Button>
-          ))}
+          {section.actions?.map((cta, index) => {
+            const Icon = getIcon(cta.icon.icon);
+
+            return (
+              <Button
+                key={index}
+                size="lg"
+                className="font-display shadow-lg shadow-primary/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
+              >
+                <Icon className="h-6 w-6" />
+                {cta.label}
+              </Button>
+            );
+          })}
         </div>
       </div>
 
