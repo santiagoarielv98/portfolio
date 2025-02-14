@@ -55,6 +55,11 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
     type,
     layout,
     order,
+    actions[]-> {
+      action,
+      "label": ${localizedField("label", lang)},
+      icon
+    },
     "content": content[]-> {
       _type,
       _id,

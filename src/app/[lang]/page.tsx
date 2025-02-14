@@ -21,6 +21,7 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
   const components = data.raw.sections.map((section) => {
     switch (section.type) {
       case "hero":
+        console.log(section);
         return <Hero key={section.identifier.current} section={section} />;
       case "about":
         return (
@@ -39,7 +40,6 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
       case "skills":
         return <Skills key={section.identifier.current} section={section} />;
       case "contact":
-        console.log(data.raw.profile);
         return (
           <Contact
             key={section.identifier.current}

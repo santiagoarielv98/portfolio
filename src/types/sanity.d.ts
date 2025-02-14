@@ -15,6 +15,14 @@ export interface SanityImage {
   url: string;
 }
 
+export interface Action {
+  action: string;
+  label: string;
+  icon: {
+    icon: string;
+    name: string;
+  };
+}
 export interface Section {
   _type: "section";
   identifier: { current: string };
@@ -23,6 +31,7 @@ export interface Section {
   type: "hero" | "experience" | "projects" | "skills" | "contact" | "about";
   layout: "grid" | "list" | "timeline";
   order: number;
+  actions: Action[] | null;
   content: Array<
     ProfileContent | ExperienceContent | ProjectContent | SkillCategoryContent
   >;

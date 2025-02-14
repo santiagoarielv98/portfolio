@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 import type { Profile, Section, Social, TopSKill } from "@/types/sanity";
 import { motion } from "framer-motion";
-import { Download, GithubIcon, User } from "lucide-react";
+import { GithubIcon, User } from "lucide-react";
 import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
@@ -240,18 +240,22 @@ const About = ({
               </div>
 
               <div className="flex flex-wrap justify-start gap-4 md:justify-center">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                >
-                  <Button
-                    className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
-                    variant="default"
+                {section.actions?.map((cta, index) => (
+                  <motion.div
+                    key={cta.action}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * index }}
                   >
-                    <Download className="mr-2 h-4 w-4" />
-                  </Button>
-                </motion.div>
+                    <Button
+                      className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
+                      variant="default"
+                    >
+                      {cta.label}
+                    </Button>
+                  </motion.div>
+                ))}
               </div>
 
               <SkillsSection topSkill={profile.topSkills} />
