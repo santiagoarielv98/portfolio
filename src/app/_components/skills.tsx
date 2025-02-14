@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Section } from "@/types/sanity";
+import type { Section, SkillCategoryContent } from "@/types/sanity";
 import { motion } from "framer-motion";
 import {
   Code2,
@@ -48,36 +48,7 @@ const categoryDescriptions = {
   "UI/UX": "User interface and experience design",
 };
 
-const getLevelText = (level: number) => {
-  const levels = {
-    90: "Expert",
-    70: "Advanced",
-    50: "Intermediate",
-    30: "Basic",
-    0: "Beginner",
-  };
-
-  const levelKey =
-    Object.keys(levels)
-      .map(Number)
-      .find((key) => level >= key) || 0;
-
-  return {
-    text: levels[levelKey as keyof typeof levels],
-    color:
-      level >= 90
-        ? "text-primary"
-        : level >= 70
-          ? "text-secondary"
-          : "text-accent",
-  };
-};
-
-const Skills = ({
-  section,
-}: {
-  section: Section & { sectionType: "skills" };
-}) => {
+const Skills = ({ section }: { section: Section }) => {
   return (
     <SectionContainer variant="skills">
       <SectionHeader
@@ -88,7 +59,7 @@ const Skills = ({
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {section.content.map((content, index) => {
-          const { skillCategory } = content;
+          const skillCategory = content as SkillCategoryContent;
           return (
             <motion.div
               key={index}
@@ -147,7 +118,7 @@ const Skills = ({
                                 </Badge>
                               </div>
                             </TooltipTrigger>
-                            {skill.level && (
+                            {skill.proficiency && (
                               <TooltipContent
                                 className="border-2 border-primary/20 bg-background px-4 py-3 shadow-xl backdrop-blur-md"
                                 sideOffset={5}
@@ -157,13 +128,8 @@ const Skills = ({
                                     Proficiency Level
                                   </p>
                                   <div className="flex items-center gap-2">
-                                    <span
-                                      className={`font-bold ${getLevelText(skill.level).color}`}
-                                    >
-                                      {getLevelText(skill.level).text}
-                                    </span>
                                     <span className="text-sm text-muted-foreground">
-                                      ({skill.level}%)
+                                      ({skill.proficiency}%)
                                     </span>
                                   </div>
                                 </div>

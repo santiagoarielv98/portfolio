@@ -147,4 +147,18 @@ export interface ProjectContent {
 
 export interface SkillCategoryContent {
   _type: "skillCategory";
+  name: string;
+  icon: {
+    name: string;
+    icon: string;
+  };
+  skills: Array<{
+    name: string;
+    icon: {
+      name: string;
+      icon: string;
+    };
+    proficiency: number;
+    tooltip: string;
+  }>;
 }
