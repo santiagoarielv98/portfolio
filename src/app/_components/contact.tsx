@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import type { Section } from "@/types/sanity";
+import type { Profile, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { Github, Mail, MapPin, MessageSquare, Send } from "lucide-react";
@@ -47,16 +47,16 @@ const ContactCard = ({
 
 const Contact = ({
   section,
+  profile,
 }: {
-  section: Section & { sectionType: "contact" };
+  section: Section;
+  profile: Profile;
 }) => {
   // console.log(section);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Implementar lógica de envío
   };
-
-  const { contact } = section.content[0];
 
   return (
     <SectionContainer variant="contact">
@@ -131,15 +131,15 @@ const Contact = ({
           <div className="space-y-4">
             <ContactCard
               icon={Mail}
-              title="Email"
-              value={contact.email}
-              href={`mailto:${contact.email}`}
+              title={profile.contact.email.label}
+              value={profile.contact.email.value}
+              href={`mailto:${profile.contact.email.value}`}
             />
             <ContactCard
               icon={MapPin}
-              title="Location"
-              value={contact.address}
-              href={`https://www.google.com/maps/place/${contact.address}`}
+              title={profile.contact.location.label}
+              value={profile.contact.location.value}
+              href={`https://www.google.com/maps/place/${profile.contact.location.value}`}
             />
           </div>
 
@@ -158,7 +158,7 @@ const Contact = ({
           </div>
 
           <div className="grid grid-cols-3 gap-4">
-            {contact.socialMedia.map((social, index) => (
+            {profile.contact.socials.map((social, index) => (
               <motion.a
                 key={index}
                 whileHover={{ scale: 1.05 }}
@@ -182,11 +182,16 @@ const Contact = ({
                 <div className="absolute inset-0 animate-ping rounded-full bg-green-500 opacity-75" />
               </div>
               <div>
-                <h4 className="font-display text-primary">
-                  Available for Work
+                {/*                   Available for Work
                 </h4>
                 <p className="text-sm text-muted-foreground">
                   Currently accepting new projects
+ */}
+                <h4 className="font-display text-primary">
+                  {profile.availability.status}
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  {profile.availability.message}
                 </p>
               </div>
             </div>
