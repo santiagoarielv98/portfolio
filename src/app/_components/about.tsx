@@ -167,7 +167,6 @@ const About = ({
   section: Section;
   profile: Profile;
 }) => {
-  console.log(profile);
   return (
     <SectionContainer variant="default">
       <SectionHeader

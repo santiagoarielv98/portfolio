@@ -19,7 +19,7 @@ export interface Section {
   _type: "section";
   identifier: { current: string };
   title: string;
-  subtitle?: string;
+  subtitle: string;
   type: "hero" | "experience" | "projects" | "skills" | "contact" | "about";
   layout: "grid" | "list" | "timeline";
   order: number;
@@ -99,6 +99,27 @@ export interface ProfileContent {
 
 export interface ExperienceContent {
   _type: "experience";
+  location: string;
+  skills: Array<{
+    name: string;
+    icon: {
+      name: string;
+      icon: string;
+    };
+    proficiency: number;
+    tooltip: string;
+  }>;
+  role: string;
+  highlights: string;
+  description: string;
+  type: "work" | "education";
+  organization: string;
+  dateRange: {
+    isCurrent: boolean;
+    start: string;
+    end: string;
+  };
+  title: string;
 }
 
 export interface ProjectContent {

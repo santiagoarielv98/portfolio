@@ -1,18 +1,14 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Section } from "@/types/sanity";
+import type { ExperienceContent, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import { BriefcaseIcon, Building2, CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 
-const WorkExperience = ({
-  section,
-}: {
-  section: Section & { sectionType: "workExperience" };
-}) => {
+const WorkExperience = ({ section }: { section: Section }) => {
   return (
     <SectionContainer variant="work">
       <SectionHeader
@@ -27,9 +23,9 @@ const WorkExperience = ({
         <div className="absolute bottom-2 left-0 top-2 ml-2 hidden w-0.5 bg-gradient-to-b from-primary/50 via-secondary/50 to-primary/50 before:absolute before:-left-1 before:top-0 before:h-3 before:w-3 before:rounded-full before:bg-primary/50 after:absolute after:-left-1 after:bottom-0 after:h-3 after:w-3 after:rounded-full after:bg-primary/50 sm:ml-6 sm:block md:ml-8" />
 
         {section.content.map((content, index) => {
-          const { workExperience } = content;
-          const startDate = new Date(workExperience.startDate);
-          const endDate = new Date(workExperience.endDate);
+          const workExperience = content as ExperienceContent;
+          const startDate = new Date(workExperience.dateRange.start);
+          const endDate = new Date(workExperience.dateRange.end);
 
           return (
             <motion.div
@@ -51,12 +47,12 @@ const WorkExperience = ({
                   <div className="flex flex-col items-start justify-between gap-2 sm:flex-row">
                     <div className="space-y-1">
                       <CardTitle className="gradient-text font-display text-xl md:text-2xl">
-                        {workExperience.position}
+                        {workExperience.role}
                       </CardTitle>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <Building2 className="h-4 w-4" />
                         <span className="font-display">
-                          {workExperience.company}
+                          {workExperience.organization}
                         </span>
                       </div>
                     </div>
@@ -88,19 +84,16 @@ const WorkExperience = ({
 
                 <CardContent className="space-y-4">
                   <ul className="list-none space-y-3">
-                    {workExperience.description.map((desc, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 + idx * 0.1 }}
-                        className="flex items-start gap-2"
-                      >
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/50" />
-                        <span className="text-muted-foreground">{desc}</span>
-                      </motion.li>
-                    ))}
+                    <motion.li
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      className="flex items-start gap-2"
+                    >
+                      <span className="text-muted-foreground">
+                        {workExperience.description}
+                      </span>
+                    </motion.li>
                   </ul>
 
                   <div className="pt-4">
@@ -109,7 +102,7 @@ const WorkExperience = ({
                       Technologies & Tools
                     </h4> */}
                     <div className="flex flex-wrap gap-2">
-                      {workExperience.technologies?.map((tech, idx) => (
+                      {workExperience.skills?.map((tech, idx) => (
                         <motion.div
                           key={idx}
                           initial={{ opacity: 0, scale: 0.8 }}
