@@ -1,86 +1,146 @@
-import type { Section } from "@/types/sanity";
-import { client } from "./client";
+import type { PortfolioQueryResult, SupportedLanguage } from "@/types/sanity";
+import { sanityClient } from "./client";
 
-export const getPageContent = async (lang: string) => {
-  const query = `*[_type == "section"] | order(order asc){
-      "identifier": identifier.current,
-      "title": title.${lang},
-      "subtitle": subtitle.${lang},
-      "description": description.${lang},
-      "sectionType": sectionType,
-      "content": content[]{
-        "personalInfo": *[_type == "personalInfo" && _id == ^._ref][0]{
-            ...,
-            "fullName": fullName.${lang},
-            "greating": greating.${lang},
-            "professionalTitle": professionalTitle.${lang},
-            "bio": bio.${lang},
-            "profileImage": profileImage.asset->url,
-            "resume": resume.asset->url,
-            "skillCategory": skillCategory->{
-                ...,
-                "name": name.${lang},
-                "skills": skills[]->{
-                    ...,
-                    "name": name.${lang},
-                    "level": level
-                }
-            },
-            "socialMedia": socialMedia[]->{
-                ...,
-                "platform": platform,
-                "url": url,
-                "tooltip": tooltip.${lang}
-            }
-        },
-        "workExperience": *[_type == "workExperience" && _id == ^._ref][0]{
-            ...,
-            "position": position.${lang},
-            "location": location.${lang},
-            "description": description[].${lang},
-            "technologies": technologies[]->{
-                ...,
-                "name": name.${lang}
-            }
-        },
-        "project": *[_type == "project" && _id == ^._ref][0]{
-            ...,
-            "title": title.${lang},
-            "description": description.${lang},
-            "technologies": technologies[]->{
-                ...,
-                "name": name.${lang}
-            },
-            "featuredImage": featuredImage.asset->url,
-            "links": links
-        },
-        "skillCategory": *[_type == "skillCategory" && _id == ^._ref][0]{
-            ...,
-            "name": name.${lang},
-            "skills": *[_type == "skill" && references(^._id)]{
-                ...,
-                "name": name.${lang},
-                "level": level
-            }
-        },
-        "education": *[_type == "education" && _id == ^._ref][0]{
-            ...,
-            "degree": degree.${lang},
-            "description": description.${lang},
-            "achievements":  achievements[]->{
-                    ...,
-                    "name": name.${lang},
-                    "level": level
-                }
-        }
-      },
-      "layout": layout,
-      "order": order,
-      "ctas": ctas[]{
-        "text": text.${lang},
-        "action": action
+const localizedField = (field: string, lang: SupportedLanguage) =>
+  `${field}.${lang}`;
+
+export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
+  "profile": *[_type == "profile"][0] {
+    _type,
+    "title": ${localizedField("title", lang)},
+    "description": ${localizedField("description", lang)},
+    "greeting": ${localizedField("greeting", lang)},
+    topSkills {
+      "title": ${localizedField("title", lang)},
+      skills[]-> {
+        "name": ${localizedField("name", lang)},
+        icon,
+        proficiency,
+        "tooltip": ${localizedField("tooltip", lang)}
       }
-    }`;
+    },
+    "role": ${localizedField("role", lang)},
+    "avatar": avatar.asset->,
+    "resume": resume.asset->,
+    contact {
+      email {
+        "label": ${localizedField("label", lang)},
+        value
+      },
+      phone {
+        "label": ${localizedField("label", lang)},
+        value
+      },
+      location {
+        "label": ${localizedField("label", lang)},
+        "value": ${localizedField("value", lang)}
+      },
+      socials[] {
+        platform,
+        url,
+        "tooltip": ${localizedField("tooltip", lang)},
+        icon
+      }
+    },
+    "availability": *[_type == "availabilityStatus" && _id == ^.availability._ref][0] {
+      status,
+      "message": ${localizedField("message", lang)}
+    }
+  },
+  "sections": *[_type == "section"] | order(order asc) {
+    _type,
+    identifier,
+    "title": ${localizedField("title", lang)},
+    "subtitle": ${localizedField("subtitle", lang)},
+    type,
+    layout,
+    order,
+    "content": content[]-> {
+      _type,
+      _id,
+      ...select(
+        _type == "profile" => {
+          "title": ${localizedField("title", lang)},
+          "description": ${localizedField("description", lang)},
+          "role": ${localizedField("role", lang)},
+          "avatar": avatar.asset->,
+          contact
+        },
+        _type == "about" => {
+          "title": ${localizedField("title", lang)},
+          "subtitle": ${localizedField("subtitle", lang)},
+        },
+        _type == "experience" => {
+          "title": ${localizedField("title", lang)},
+          "description": ${localizedField("description", lang)},
+          organization,
+          "role": ${localizedField("role", lang)},
+          type,
+          dateRange,
+          "highlights": highlights[]{"text": ${localizedField("text", lang)}},
+          "location": ${localizedField("location", lang)},
+          "skills": skills[]-> {
+            "name": ${localizedField("name", lang)},
+            icon,
+            proficiency,
+            "tooltip": ${localizedField("tooltip", lang)}
+          }
+        },
+        _type == "project" => {
+          "title": ${localizedField("title", lang)},
+          "description": ${localizedField("description", lang)},
+          "thumbnail": thumbnail.asset->,
+          "gallery": gallery[].asset->,
+          "skills": skills[]-> {
+            "name": ${localizedField("name", lang)},
+            icon,
+            proficiency,
+            "tooltip": ${localizedField("tooltip", lang)}
+          },
+          links,
+          featured
+        },
+        _type == "skillCategory" => {
+          "name": ${localizedField("name", lang)},
+          icon,
+          "skills": skills[]-> {
+            "name": ${localizedField("name", lang)},
+            icon,
+            proficiency,
+            "tooltip": ${localizedField("tooltip", lang)}
+          }
+        }
+      )
+    }
+  }
+}`;
 
-  return client.fetch<Section[]>(query);
+export const createSectionQuery = (lang: SupportedLanguage = "es") => `
+  *[_type == "section" && identifier.current == $identifier][0] {
+    _type,
+    identifier,
+    "title": ${localizedField("title", lang)},
+    "subtitle": ${localizedField("subtitle", lang)},
+    type,
+    layout,
+    order,
+    "content": content[]-> {
+      _type,
+      _id,
+    }
+  }
+`;
+
+export interface LocalizedQueryResult<T> {
+  value: string;
+  language: SupportedLanguage;
+  raw: T;
+}
+
+export const getPortfolio = async (
+  lang: SupportedLanguage = "es",
+): Promise<LocalizedQueryResult<PortfolioQueryResult>> => {
+  const query = createPortfolioQuery(lang);
+  const result = await sanityClient.fetch(query);
+  return { value: result, language: lang, raw: result };
 };

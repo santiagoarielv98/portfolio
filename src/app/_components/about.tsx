@@ -10,7 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { Section, SkillCategory, SocialMedia } from "@/types/sanity";
+import type { Profile, Section, Social, TopSKill } from "@/types/sanity";
 import { motion } from "framer-motion";
 import { Download, GithubIcon, User } from "lucide-react";
 import Image from "next/image";
@@ -52,26 +52,20 @@ const ProfileImage = ({ src, alt }: { src: string; alt: string }) => (
 );
 
 export interface SocialLinksProps {
-  socialMedia: SocialMedia[];
+  socials: Social[];
 }
 
 // Social Links Component
-const SocialLinks = ({ socialMedia }: SocialLinksProps) => (
+const ListSocial = ({ socials }: SocialLinksProps) => (
   <div className="absolute -right-4 top-1/2 flex -translate-y-1/2 flex-col gap-4">
-    {socialMedia.map((social, index) => (
+    {socials.map((social, index) => (
       <SocialButton key={social.platform} social={social} index={index} />
     ))}
   </div>
 );
 
 // Social Button Component
-const SocialButton = ({
-  social,
-  index,
-}: {
-  social: SocialMedia;
-  index: number;
-}) => (
+const SocialButton = ({ social, index }: { social: Social; index: number }) => (
   <motion.div
     initial={{ opacity: 0, x: 20 }}
     whileInView={{ opacity: 1, x: 0 }}
@@ -100,7 +94,7 @@ const SocialButton = ({
 );
 
 // Tooltip Content Component
-const SocialTooltipContent = ({ platform, tooltip }: Partial<SocialMedia>) => (
+const SocialTooltipContent = ({ platform, tooltip }: Partial<Social>) => (
   <>
     <TooltipContent
       side="right"
@@ -137,15 +131,15 @@ const TooltipInner = ({
 
 // Skills Section Component
 export interface SkillsSectionProps {
-  skill: SkillCategory;
+  topSkill: TopSKill;
 }
-const SkillsSection = ({ skill }: SkillsSectionProps) => (
+const SkillsSection = ({ topSkill }: SkillsSectionProps) => (
   <div className="mt-8">
     <h3 className="mb-3 font-display text-sm text-muted-foreground">
-      {skill.name}
+      {topSkill.title}
     </h3>
     <div className="flex flex-wrap justify-start gap-2 md:justify-center">
-      {skill.skills?.map((skill, index) => (
+      {topSkill.skills?.map((skill, index) => (
         <motion.div
           key={skill.name}
           initial={{ opacity: 0, scale: 0.5 }}
@@ -168,27 +162,25 @@ const SkillsSection = ({ skill }: SkillsSectionProps) => (
 // Main About Component
 const About = ({
   section,
+  profile,
 }: {
-  section: Section & { sectionType: "about" };
+  section: Section;
+  profile: Profile;
 }) => {
-  const { personalInfo } = section.content[0];
-
+  console.log(profile);
   return (
     <SectionContainer variant="default">
       <SectionHeader
         title={section.title}
-        subtitle={section.subtitle}
+        subtitle={section.subtitle!}
         icon={User}
       />
       <Card className="relative mx-auto max-w-6xl border-2 bg-background/80 backdrop-blur-sm transition-colors duration-500 hover:border-primary/50">
         <CardContent className="overflow-hidden p-6 md:p-8">
           <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
             <div className="relative">
-              <ProfileImage
-                src={personalInfo.profileImage}
-                alt={personalInfo.fullName}
-              />
-              <SocialLinks socialMedia={personalInfo.socialMedia} />
+              <ProfileImage src={profile.avatar.url} alt={profile.title} />
+              <ListSocial socials={profile.contact.socials} />
             </div>
 
             <motion.div
@@ -209,12 +201,12 @@ const About = ({
                     variant="outline"
                     className="border-primary/30 px-4 py-1 font-display text-lg shadow-lg shadow-primary/20 transition-shadow hover:shadow-primary/30"
                   >
-                    {personalInfo.greating}
+                    {profile.greeting}
                   </Badge>
                 </motion.div>
 
                 <TypographyH1 className="bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text font-display text-transparent">
-                  {personalInfo.fullName}
+                  {profile.title}
                 </TypographyH1>
 
                 <motion.div
@@ -233,7 +225,7 @@ const About = ({
                         variant="secondary"
                         className="px-3 py-1 font-display shadow-md transition-shadow hover:shadow-lg"
                       >
-                        {personalInfo.professionalTitle}
+                        {profile.role}
                       </Badge>
                     </motion.div>
                   }
@@ -244,31 +236,26 @@ const About = ({
 
               <div className="prose prose-neutral dark:prose-invert max-w-none">
                 <TypographyP className="text-lg leading-relaxed">
-                  {personalInfo.bio}
+                  {profile.description}
                 </TypographyP>
               </div>
 
               <div className="flex flex-wrap justify-start gap-4 md:justify-center">
-                {section.ctas?.map((cta, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * index }}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <Button
+                    className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
+                    variant="default"
                   >
-                    <Button
-                      className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
-                      variant="default"
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      {cta.text}
-                    </Button>
-                  </motion.div>
-                ))}
+                    <Download className="mr-2 h-4 w-4" />
+                  </Button>
+                </motion.div>
               </div>
 
-              <SkillsSection skill={personalInfo.skillCategory} />
+              <SkillsSection topSkill={profile.topSkills} />
             </motion.div>
           </div>
         </CardContent>

@@ -1,16 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import type { Section } from "@/types/sanity";
 import { ChevronDown } from "lucide-react";
 import { Parallax } from "react-scroll-parallax";
 import { TypographyH1, TypographyH2 } from "./typography";
 
-export function Hero({
-  section,
-}: {
-  section: Section & { sectionType: "hero" };
-}) {
+export function Hero({ section }: { section: Section }) {
   return (
     <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
       {/* Gradient Background */}
@@ -47,7 +42,7 @@ export function Hero({
 
         <Parallax translateY={[20, -20]} opacity={[0.5, 1]}>
           <TypographyH2 className="animation-delay-300 mx-auto max-w-2xl animate-fade-in-up font-light leading-relaxed">
-            {section.description}
+            {section.subtitle}
           </TypographyH2>
         </Parallax>
 
@@ -56,7 +51,7 @@ export function Hero({
         </div>
 
         <div className="animation-delay-500 flex animate-fade-in-up flex-col items-center justify-center gap-4 sm:flex-row">
-          {section.ctas?.map((cta, index) => (
+          {/* {section.ctas?.map((cta, index) => (
             <Button
               key={index}
               size="lg"
@@ -64,7 +59,7 @@ export function Hero({
             >
               {cta.text}
             </Button>
-          ))}
+          ))} */}
         </div>
       </div>
 

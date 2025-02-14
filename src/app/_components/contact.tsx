@@ -8,15 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import type { Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
-  MessageSquare,
-  Send,
-  Twitter,
-} from "lucide-react";
+import { Github, Mail, MapPin, MessageSquare, Send } from "lucide-react";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 
@@ -53,24 +45,24 @@ const ContactCard = ({
   </motion.a>
 );
 
-const Contact = (
-  {
-    // section,
-  }: {
-    section: Section & { sectionType: "contact" };
-  },
-) => {
+const Contact = ({
+  section,
+}: {
+  section: Section & { sectionType: "contact" };
+}) => {
   // console.log(section);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Implementar lógica de envío
   };
 
+  const { contact } = section.content[0];
+
   return (
     <SectionContainer variant="contact">
       <SectionHeader
-        title="Let's Work Together"
-        subtitle="Get in Touch"
+        title={section.title}
+        subtitle={section.subtitle}
         icon={MessageSquare}
       />
 
@@ -140,14 +132,14 @@ const Contact = (
             <ContactCard
               icon={Mail}
               title="Email"
-              value="hello@example.com"
-              href="mailto:hello@example.com"
+              value={contact.email}
+              href={`mailto:${contact.email}`}
             />
             <ContactCard
               icon={MapPin}
               title="Location"
-              value="Buenos Aires, Argentina"
-              href="https://maps.google.com"
+              value={contact.address}
+              href={`https://www.google.com/maps/place/${contact.address}`}
             />
           </div>
 
@@ -166,33 +158,18 @@ const Contact = (
           </div>
 
           <div className="grid grid-cols-3 gap-4">
-            {[
-              {
-                icon: Github,
-                href: "https://github.com",
-                color: "hover:bg-[#333333] hover:text-white",
-              },
-              {
-                icon: Linkedin,
-                href: "https://linkedin.com",
-                color: "hover:bg-[#0077b5] hover:text-white",
-              },
-              {
-                icon: Twitter,
-                href: "https://twitter.com",
-                color: "hover:bg-[#1DA1F2] hover:text-white",
-              },
-            ].map((social, index) => (
+            {contact.socialMedia.map((social, index) => (
               <motion.a
                 key={index}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href={social.href}
+                href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center justify-center rounded-xl border-2 p-4 transition-all duration-300 ${social.color}`}
+                // ${social.color}
+                className={`flex items-center justify-center rounded-xl border-2 p-4 transition-all duration-300`}
               >
-                <social.icon className="h-6 w-6" />
+                <Github className="h-6 w-6" />
               </motion.a>
             ))}
           </div>

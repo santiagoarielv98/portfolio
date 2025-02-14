@@ -1,166 +1,110 @@
-export type HeroSection = {
-  sectionType: "hero";
-  description: string;
-};
+export type SupportedLanguage = "es" | "en";
 
-export type AboutSection = {
-  sectionType: "about";
-  content: Array<{ personalInfo: PersonalInfo }>;
-};
+export interface SanityImage {
+  _type: "image";
+  asset: {
+    url: string;
+    metadata: {
+      dimensions: {
+        width: number;
+        height: number;
+      };
+      // ... otros metadatos
+    };
+  };
+  url: string;
+}
 
-export type WorkExperienceSection = {
-  sectionType: "workExperience";
-  content: Array<{ workExperience: WorkExperience }>;
-};
-
-export type ProjectSection = {
-  sectionType: "projects";
-  content: Array<{ project: Project }>;
-};
-
-export type SkillCategorySection = {
-  sectionType: "skills";
-  content: Array<{ skillCategory: SkillCategory }>;
-};
-
-export type EducationSection = {
-  sectionType: "education";
-  content: Array<{ education: Education }>;
-};
-
-export type ContactSection = {
-  sectionType: "contact";
-  cta: Cta;
-};
-
-export type Section = {
-  ctas: Cta[];
-  identifier: string;
+export interface Section {
+  _type: "section";
+  identifier: { current: string };
   title: string;
-  subtitle: string;
-  layout: string;
+  subtitle?: string;
+  type: "hero" | "experience" | "projects" | "skills" | "contact" | "about";
+  layout: "grid" | "list" | "timeline";
   order: number;
-} & (
-  | HeroSection
-  | AboutSection
-  | WorkExperienceSection
-  | ProjectSection
-  | SkillCategorySection
-  | EducationSection
-  | ContactSection
-);
-
-export interface Content {
-  _key: string;
-  personalInfo: PersonalInfo | null;
-  workExperience: WorkExperience | null;
-  project: Project | null;
-  skillCategory: SkillCategory | null;
-  education: Education | null;
-  _ref: string;
-  _type: string;
+  content: Array<
+    ProfileContent | ExperienceContent | ProjectContent | SkillCategoryContent
+  >;
 }
 
-export interface Education {
-  startDate: Date;
-  _rev: string;
-  degree: string;
-  _createdAt: Date;
-  _id: string;
-  _updatedAt: Date;
-  institution: string;
-  endDate: Date;
-  description: string;
-  _type: string;
-  achievements: null | Technology[];
-}
-
-export interface PersonalInfo {
-  _rev: string;
-  bio: string;
-  _type: string;
-  fullName: string;
-  greating: string;
-  _id: string;
-  _updatedAt: Date;
-  professionalTitle: string;
-  resume: string;
-  _createdAt: Date;
-  profileImage: string;
-  skillCategory: SkillCategory;
-  socialMedia: SocialMedia[];
-}
-
-export interface Technology {
-  name: string;
-  level: number;
-}
-
-export interface Project {
-  technologies: null | Technology[];
-  _updatedAt: Date;
+export interface TopSKill {
   title: string;
-  _id: string;
-  featuredImage: string;
-  links: Links;
-  _createdAt: Date;
-  _rev: string;
-  _type: string;
+  skills: Array<{
+    name: string;
+    icon: {
+      name: string;
+      icon: string;
+    };
+  }>;
+}
+
+export interface Profile {
+  _type: "profile";
+  title: string;
   description: string;
+  greeting: string;
+  role: string;
+  avatar: SanityImage;
+  resume: SanityFile;
+  contact: Contact;
+  topSkills: TopSKill;
+  availability: {
+    status: "available" | "open" | "unavailable";
+    message: string;
+  };
 }
 
-export interface Asset {
-  _ref: string;
-  _type: string;
-}
-
-export interface Links {
-  repo: string;
-  live: string;
-}
-
-export interface SkillCategory {
-  _rev: string;
-  _type: string;
-  name: string;
-  _id: string;
-  _updatedAt: Date;
-  _createdAt: Date;
-  skills: Skill[];
-}
-
-export interface WorkExperience {
-  position: string;
-  startDate: Date;
-  _createdAt: Date;
-  _type: string;
-  company: string;
-  location: string;
-  _id: string;
-  _updatedAt: Date;
-  endDate: Date;
-  _rev: string;
-  description: string[];
-  technologies: null | Technology[];
-}
-
-export enum Type {
-  LocaleString = "localeString",
-  LocaleText = "localeText",
-}
-
-export interface Cta {
-  text: string;
-  action: string;
-}
-
-export interface Skill {
-  name: string;
-  level: number;
-}
-
-export interface SocialMedia {
+export interface Social {
   platform: string;
   url: string;
   tooltip: string;
+  icon: {
+    name: string;
+    icon: string;
+  };
+}
+
+export interface Contact {
+  email: ContactField;
+  phone: ContactField;
+  location: ContactField;
+  socials: Social[];
+}
+
+export interface PortfolioQueryResult {
+  profile: Profile;
+  sections: Section[];
+}
+
+export interface ContactField {
+  label: string;
+  value: string;
+}
+
+export interface SanityFile {
+  _type: "file";
+  asset: {
+    url: string;
+  };
+}
+
+export interface ProfileContent {
+  _type: "profile";
+  title: string;
+  description: string;
+  role: string;
+  avatar: SanityImage;
+}
+
+export interface ExperienceContent {
+  _type: "experience";
+}
+
+export interface ProjectContent {
+  _type: "project";
+}
+
+export interface SkillCategoryContent {
+  _type: "skillCategory";
 }

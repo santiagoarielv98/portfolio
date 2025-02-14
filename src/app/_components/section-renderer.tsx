@@ -20,7 +20,6 @@ const SectionRenderer = (props: SectionRendererProps) => {
     case "hero":
       return <Hero section={section} />;
     case "about":
-      console.log(section);
       return <About section={section} />;
     case "workExperience":
       return <WorkExperience section={section} />;
@@ -31,6 +30,7 @@ const SectionRenderer = (props: SectionRendererProps) => {
     case "education":
       return <Education section={section} />;
     case "contact":
+      console.log(section);
       return <Contact section={section} />;
     default:
       return null;

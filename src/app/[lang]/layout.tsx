@@ -41,9 +41,7 @@ export default async function RootLayout(
       className={`${spaceGrotesk.variable} ${urbanist.variable} scroll-smooth`}
     >
       <body className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground antialiased">
-        <ParallaxProviderWrapper>
-          <main className="relative">{children}</main>
-        </ParallaxProviderWrapper>
+        <ParallaxProviderWrapper>{children}</ParallaxProviderWrapper>
       </body>
     </html>
   );
