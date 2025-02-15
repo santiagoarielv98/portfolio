@@ -1,11 +1,12 @@
 "use client";
 
+import { getIcon } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 import type { Section } from "@/types/sanity";
 import { ChevronDown } from "lucide-react";
 import { Parallax } from "react-scroll-parallax";
 import { TypographyH1, TypographyH2 } from "./typography";
-import { Button } from "@/components/ui/button";
-import { getIcon } from "@/components/icons";
+import { Separator } from "@/components/ui/separator";
 
 export function Hero({ section }: { section: Section }) {
   return (
@@ -48,9 +49,7 @@ export function Hero({ section }: { section: Section }) {
           </TypographyH2>
         </Parallax>
 
-        <div className="mx-auto w-full max-w-2xl py-6">
-          <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        </div>
+        <Separator />
 
         <div className="animation-delay-500 flex animate-fade-in-up flex-col items-center justify-center gap-4 sm:flex-row">
           {section.actions?.map((cta, index) => {

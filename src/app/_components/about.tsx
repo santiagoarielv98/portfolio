@@ -239,7 +239,7 @@ const About = ({
                 </motion.div>
               </div>
 
-              <Separator className="bg-primary/20" />
+              <Separator />
 
               <div className="prose prose-neutral dark:prose-invert max-w-none">
                 <TypographyP className="text-lg leading-relaxed">
