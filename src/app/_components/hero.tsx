@@ -11,7 +11,6 @@ import { Separator } from "@/components/ui/separator";
 export function Hero({ section }: { section: Section }) {
   return (
     <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
-      {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/20" />
 
       <Parallax
@@ -70,7 +69,6 @@ export function Hero({ section }: { section: Section }) {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <div className="absolute bottom-4 animate-bounce">
         <ChevronDown className="h-8 w-8 text-muted-foreground" />
       </div>
