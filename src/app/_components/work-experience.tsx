@@ -1,7 +1,13 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import type { ExperienceContent, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import { Building2, CalendarDays, MapPin } from "lucide-react";
@@ -85,46 +91,35 @@ const WorkExperience = ({ section }: { section: Section }) => {
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  <ul className="list-none space-y-3">
-                    <motion.li
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-2"
-                    >
-                      <span className="text-muted-foreground">
-                        {workExperience.description}
-                      </span>
-                    </motion.li>
-                  </ul>
-
-                  <div className="pt-4">
-                    {/* TRADUCIR */}
-                    {/* <h4 className="mb-2 font-display text-sm text-muted-foreground">
-                      Technologies & Tools
-                    </h4> */}
-                    <div className="flex flex-wrap gap-2">
-                      {workExperience.skills?.map((tech, idx) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.3 + idx * 0.05 }}
-                        >
-                          <Badge
-                            variant="soft"
-                            size="md"
-                            shadow="sm"
-                            className="font-medium"
-                          >
-                            {tech.name}
-                          </Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
+                  <motion.p
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="text-muted-foreground"
+                  >
+                    {workExperience.description}
+                  </motion.p>
                 </CardContent>
+                <CardFooter className="flex-wrap gap-2">
+                  {workExperience.skills?.map((tech, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + idx * 0.05 }}
+                    >
+                      <Badge
+                        variant="soft"
+                        size="md"
+                        shadow="sm"
+                        className="font-medium"
+                      >
+                        {tech.name}
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </CardFooter>
               </Card>
             </motion.div>
           );

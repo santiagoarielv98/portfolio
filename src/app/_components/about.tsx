@@ -247,7 +247,7 @@ const About = ({
 
               <Separator />
 
-              <div className="prose prose-neutral dark:prose-invert max-w-none">
+              <div>
                 <TypographyP className="text-lg leading-relaxed">
                   {profile.description}
                 </TypographyP>

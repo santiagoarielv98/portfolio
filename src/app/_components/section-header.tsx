@@ -25,7 +25,7 @@ export function SectionHeader({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={cn("mb-16 text-center", className)}
+      className={cn("mb-16 space-y-4 text-center", className)}
     >
       <Badge variant="gradient" size="lg" shadow="lg" className="font-display">
         <Icon className="h-4 w-4" />
