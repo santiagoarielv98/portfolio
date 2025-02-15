@@ -30,14 +30,14 @@ const ProfileImage = ({ src, alt }: { src: string; alt: string }) => (
     className="group relative"
   >
     <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-      <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/20 blur-2xl transition-colors duration-500 group-hover:bg-primary/30" />
-      <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-secondary/20 blur-2xl transition-colors duration-500 group-hover:bg-secondary/30" />
+      {/* <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/20 blur-2xl transition-colors duration-500 group-hover:bg-primary/30" /> */}
+      {/* <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-secondary/20 blur-2xl transition-colors duration-500 group-hover:bg-secondary/30" /> */}
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
         className="relative"
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-primary/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 mt-auto h-1/3 bg-gradient-to-t from-primary/40 via-primary/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <Image
           src={src}
           alt={alt}
@@ -57,7 +57,7 @@ export interface SocialLinksProps {
 
 // Social Links Component
 const ListSocial = ({ socials }: SocialLinksProps) => (
-  <div className="absolute -right-4 top-1/2 flex -translate-y-1/2 flex-col gap-4">
+  <div className="absolute -right-5 top-1/2 flex -translate-y-1/2 flex-col gap-4">
     {socials.map((social, index) => (
       <SocialButton key={social.platform} social={social} index={index} />
     ))}
