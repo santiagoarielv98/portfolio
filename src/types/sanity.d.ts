@@ -28,7 +28,14 @@ export interface Section {
   identifier: { current: string };
   title: string;
   subtitle: string;
-  type: "hero" | "experience" | "projects" | "skills" | "contact" | "about";
+  type:
+    | "hero"
+    | "experience"
+    | "projects"
+    | "skills"
+    | "contact"
+    | "about"
+    | "education";
   layout: "grid" | "list" | "timeline";
   order: number;
   icon: string;

@@ -8,11 +8,7 @@ import { Building2, CalendarDays, ScrollText, Trophy } from "lucide-react";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 
-const Education = ({
-  section,
-}: {
-  section: Section & { sectionType: "education" };
-}) => {
+const Education = ({ section }: { section: Section }) => {
   return (
     <SectionContainer>
       <SectionHeader
@@ -23,9 +19,9 @@ const Education = ({
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {section.content.map((content, index) => {
-          const { education } = content as ExperienceContent;
-          const startDate = new Date(education.startDate);
-          const endDate = new Date(education.endDate);
+          const education = content as ExperienceContent;
+          const startDate = new Date(education.dateRange.start);
+          const endDate = new Date(education.dateRange.end);
 
           return (
             <motion.div
@@ -68,12 +64,12 @@ const Education = ({
 
                   <div className="space-y-2">
                     <CardTitle className="bg-gradient-to-r from-primary to-secondary bg-clip-text font-display text-xl text-transparent">
-                      {education.degree}
+                      {education.title}
                     </CardTitle>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Building2 className="h-4 w-4" />
                       <span className="font-display">
-                        {education.institution}
+                        {education.organization}
                       </span>
                     </div>
                   </div>
@@ -94,7 +90,7 @@ const Education = ({
                   </motion.div>
 
                   {/* Achievements or highlights could go here */}
-                  {education.achievements && (
+                  {education.skills && (
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -103,13 +99,13 @@ const Education = ({
                       className="border-t border-border/50 pt-4"
                     >
                       <div className="flex flex-wrap gap-2">
-                        {education.achievements.map((achievement, idx) => (
+                        {education.skills.map((skill, idx) => (
                           <Badge
                             key={idx}
                             variant="secondary"
                             className="bg-secondary/50 shadow-sm transition-all duration-300 hover:bg-secondary/70 hover:shadow-md"
                           >
-                            {achievement.name}
+                            {skill.name}
                           </Badge>
                         ))}
                       </div>

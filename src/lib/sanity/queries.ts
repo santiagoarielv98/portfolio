@@ -92,6 +92,20 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
             "tooltip": ${localizedField("tooltip", lang)}
           }
         },
+        _type == "education" => {
+          "title": ${localizedField("title", lang)},
+          "description": ${localizedField("description", lang)},
+          institution,
+          degree,
+          dateRange,
+          "location": ${localizedField("location", lang)},
+          "skills": skills[]-> {
+            "name": ${localizedField("name", lang)},
+            icon,
+            proficiency,
+            "tooltip": ${localizedField("tooltip", lang)}
+          }
+        },
         _type == "project" => {
           "title": ${localizedField("title", lang)},
           "description": ${localizedField("description", lang)},

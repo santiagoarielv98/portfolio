@@ -7,6 +7,7 @@ import WorkExperience from "../_components/work-experience";
 import Projects from "../_components/projects";
 import Skills from "../_components/skills";
 import Contact from "../_components/contact";
+import Education from "../_components/education";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -34,6 +35,8 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
         return (
           <WorkExperience key={section.identifier.current} section={section} />
         );
+      case "education":
+        return <Education key={section.identifier.current} section={section} />;
       case "projects":
         return <Projects key={section.identifier.current} section={section} />;
       case "skills":

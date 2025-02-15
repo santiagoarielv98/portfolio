@@ -1,6 +1,7 @@
 import {
   Briefcase,
   FileUser,
+  GraduationCap,
   Lightbulb,
   Mail,
   MessageSquare,
@@ -97,6 +98,7 @@ export const iconsMap: Record<string, IconType> = {
   lightbulb: Lightbulb,
   briefcase: Briefcase,
   cv: FileUser,
+  graduationcap: GraduationCap,
 };
 
 export const getIcon = (icon: string) => {
