@@ -143,22 +143,26 @@ const SkillsSection = ({ topSkill }: SkillsSectionProps) => (
       {topSkill.title}
     </h3>
     <div className="flex flex-wrap justify-start gap-2 md:justify-center">
-      {topSkill.skills?.map((skill, index) => (
-        <motion.div
-          key={skill.name}
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.05 * index }}
-        >
-          <Badge
-            variant="outline"
-            className="font-display shadow transition-shadow hover:shadow-md"
+      {topSkill.skills?.map((skill, index) => {
+        const Icon = getIcon(skill.icon);
+        return (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 * index }}
           >
-            {skill.name}
-          </Badge>
-        </motion.div>
-      ))}
+            <Badge
+              variant="outline"
+              className="font-display shadow transition-shadow hover:shadow-md"
+            >
+              <Icon className="mr-1.5" />
+              {skill.name}
+            </Badge>
+          </motion.div>
+        );
+      })}
     </div>
   </div>
 );

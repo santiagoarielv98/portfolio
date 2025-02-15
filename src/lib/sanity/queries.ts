@@ -14,7 +14,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
       "title": ${localizedField("title", lang)},
       skills[]-> {
         "name": ${localizedField("name", lang)},
-        icon,
+        "icon": icon->icon,
         proficiency,
         "tooltip": ${localizedField("tooltip", lang)}
       }

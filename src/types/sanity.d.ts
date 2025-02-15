@@ -49,10 +49,7 @@ export interface TopSKill {
   title: string;
   skills: Array<{
     name: string;
-    icon: {
-      name: string;
-      icon: string;
-    };
+    icon: string;
   }>;
 }
 
