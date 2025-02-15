@@ -31,6 +31,7 @@ export interface Section {
   type: "hero" | "experience" | "projects" | "skills" | "contact" | "about";
   layout: "grid" | "list" | "timeline";
   order: number;
+  icon: string;
   actions: Action[] | null;
   content: Array<
     ProfileContent | ExperienceContent | ProjectContent | SkillCategoryContent

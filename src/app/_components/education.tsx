@@ -2,15 +2,9 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Section } from "@/types/sanity";
+import type { ExperienceContent, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
-import {
-  Building2,
-  CalendarDays,
-  GraduationCap,
-  ScrollText,
-  Trophy,
-} from "lucide-react";
+import { Building2, CalendarDays, ScrollText, Trophy } from "lucide-react";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 
@@ -24,12 +18,12 @@ const Education = ({
       <SectionHeader
         title={section.title}
         subtitle={section.subtitle}
-        icon={GraduationCap}
+        icon={section.icon}
       />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {section.content.map((content, index) => {
-          const { education } = content;
+          const { education } = content as ExperienceContent;
           const startDate = new Date(education.startDate);
           const endDate = new Date(education.endDate);
 

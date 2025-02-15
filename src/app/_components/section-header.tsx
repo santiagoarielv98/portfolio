@@ -1,22 +1,23 @@
+import { getIcon } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
-import { TypographyH1 } from "./typography";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { TypographyH1 } from "./typography";
 
 interface SectionHeaderProps {
   title: string;
   subtitle: string;
-  icon: LucideIcon;
+  icon: string;
   className?: string;
 }
 
 export function SectionHeader({
   title,
   subtitle,
-  icon: Icon,
+  icon,
   className,
 }: SectionHeaderProps) {
+  const Icon = getIcon(icon);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/tooltip";
 import type { Profile, Section, Social, TopSKill } from "@/types/sanity";
 import { motion } from "framer-motion";
-import { User } from "lucide-react";
 import Image from "next/image";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
@@ -177,7 +176,7 @@ const About = ({
       <SectionHeader
         title={section.title}
         subtitle={section.subtitle!}
-        icon={User}
+        icon={section.icon}
       />
       <Card className="relative mx-auto max-w-6xl border-2 bg-background/80 backdrop-blur-sm transition-colors duration-500 hover:border-primary/50">
         <CardContent className="overflow-hidden p-6 md:p-8">

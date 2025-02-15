@@ -22,7 +22,7 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
       case "hero":
         return <Hero key={section.identifier.current} section={section} />;
       case "about":
-        console.log(data.raw.profile);
+        console.log(section);
         return (
           <About
             key={section.identifier.current}

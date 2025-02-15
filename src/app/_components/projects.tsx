@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ProjectContent, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
-import { CodeIcon, ExternalLink, Github, Rocket } from "lucide-react";
+import { ExternalLink, Github, Rocket } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
-import Link from "next/link";
 
 const Projects = ({ section }: { section: Section }) => {
   return (
@@ -17,7 +17,7 @@ const Projects = ({ section }: { section: Section }) => {
       <SectionHeader
         title={section.title}
         subtitle={section.subtitle}
-        icon={CodeIcon}
+        icon={section.icon}
       />
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

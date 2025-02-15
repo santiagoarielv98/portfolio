@@ -1,10 +1,10 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ExperienceContent, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
-import { BriefcaseIcon, Building2, CalendarDays, MapPin } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Building2, CalendarDays, MapPin } from "lucide-react";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 
@@ -14,7 +14,7 @@ const WorkExperience = ({ section }: { section: Section }) => {
       <SectionHeader
         title={section.title}
         subtitle={section.subtitle}
-        icon={BriefcaseIcon}
+        icon={section.icon}
       />
 
       {/* Timeline */}

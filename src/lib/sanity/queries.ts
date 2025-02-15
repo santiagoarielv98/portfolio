@@ -60,6 +60,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
       "label": ${localizedField("label", lang)},
       icon->
     },
+    "icon": icon->icon,
     "content": content[]-> {
       _type,
       _id,

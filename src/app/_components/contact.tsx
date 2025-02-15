@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import type { Profile, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Github, Mail, MapPin, MessageSquare, Send } from "lucide-react";
+import { Github, Mail, MapPin, Send } from "lucide-react";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
 
@@ -63,7 +63,7 @@ const Contact = ({
       <SectionHeader
         title={section.title}
         subtitle={section.subtitle}
-        icon={MessageSquare}
+        icon={section.icon}
       />
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2">
