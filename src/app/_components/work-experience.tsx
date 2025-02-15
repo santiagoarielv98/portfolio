@@ -59,7 +59,9 @@ const WorkExperience = ({ section }: { section: Section }) => {
                     <div className="flex flex-row flex-wrap items-start gap-2 sm:flex-col sm:text-right">
                       <Badge
                         variant="outline"
-                        className="flex items-center gap-1 shadow-sm"
+                        size="sm"
+                        shadow="sm"
+                        className="font-display"
                       >
                         <MapPin className="h-3 w-3" />
                         {workExperience.location}
@@ -111,8 +113,10 @@ const WorkExperience = ({ section }: { section: Section }) => {
                           transition={{ delay: 0.3 + idx * 0.05 }}
                         >
                           <Badge
-                            variant="secondary"
-                            className="bg-secondary/50 font-medium text-foreground shadow-sm transition-all duration-300 hover:bg-secondary/70 hover:shadow-md"
+                            variant="soft"
+                            size="md"
+                            shadow="sm"
+                            className="font-medium"
                           >
                             {tech.name}
                           </Badge>

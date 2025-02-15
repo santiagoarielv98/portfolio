@@ -154,10 +154,12 @@ const SkillsSection = ({ topSkill }: SkillsSectionProps) => (
             transition={{ delay: 0.05 * index }}
           >
             <Badge
-              variant="outline"
-              className="font-display shadow transition-shadow hover:shadow-md"
+              variant="soft"
+              size="md"
+              shadow="sm"
+              className="font-display"
             >
-              <Icon className="mr-1.5" />
+              <Icon className="h-4 w-4" />
               {skill.name}
             </Badge>
           </motion.div>
@@ -205,8 +207,10 @@ const About = ({
                   className="inline-block"
                 >
                   <Badge
-                    variant="outline"
-                    className="border-primary/30 px-4 py-1 font-display text-lg shadow-lg shadow-primary/20 transition-shadow hover:shadow-primary/30"
+                    variant="gradient"
+                    size="lg"
+                    shadow="lg"
+                    className="font-display"
                   >
                     {profile.greeting}
                   </Badge>
@@ -229,8 +233,10 @@ const About = ({
                       viewport={{ once: true }}
                     >
                       <Badge
-                        variant="secondary"
-                        className="px-3 py-1 font-display shadow-md transition-shadow hover:shadow-lg"
+                        variant="accent"
+                        size="lg"
+                        shadow="md"
+                        className="font-display text-foreground dark:text-accent-foreground"
                       >
                         {profile.role}
                       </Badge>

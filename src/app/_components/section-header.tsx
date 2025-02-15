@@ -27,11 +27,8 @@ export function SectionHeader({
       transition={{ duration: 0.5 }}
       className={cn("mb-16 text-center", className)}
     >
-      <Badge
-        variant="outline"
-        className="glassmorphism mb-4 border-primary/20 px-4 py-1 font-display text-lg text-foreground shadow-lg transition-all hover:shadow-xl"
-      >
-        <Icon className="mr-2 h-4 w-4" />
+      <Badge variant="gradient" size="lg" shadow="lg" className="font-display">
+        <Icon className="h-4 w-4" />
         {subtitle}
       </Badge>
       <div className="relative mx-auto flex items-center justify-center gap-4">

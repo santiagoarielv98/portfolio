@@ -106,8 +106,10 @@ const Projects = ({ section }: { section: Section }) => {
                         transition={{ delay: 0.1 * idx }}
                       >
                         <Badge
-                          variant="secondary"
-                          className="bg-secondary/10 shadow-sm transition-all duration-300 hover:bg-secondary/20 hover:shadow-md"
+                          variant="soft"
+                          size="md"
+                          shadow="sm"
+                          className="font-medium"
                         >
                           {tech.name}
                         </Badge>

@@ -111,8 +111,10 @@ const Skills = ({ section }: { section: Section }) => {
                             <TooltipTrigger asChild>
                               <div>
                                 <Badge
-                                  variant="secondary"
-                                  className="cursor-help bg-secondary/20 px-3 py-1.5 font-display shadow-sm transition-all duration-300 hover:bg-secondary/30 hover:shadow-md"
+                                  variant="soft"
+                                  size="lg"
+                                  shadow="md"
+                                  className="cursor-help font-display"
                                 >
                                   {skill.name}
                                 </Badge>
