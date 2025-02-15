@@ -1,13 +1,12 @@
 import type { Locale } from "@/config/i18n-config";
 import { i18n } from "@/config/i18n-config";
 import { getPortfolio } from "@/lib/sanity/queries";
-import { Hero } from "../_components/hero";
 import About from "../_components/about";
-import WorkExperience from "../_components/work-experience";
+import Contact from "../_components/contact";
+import Experience from "../_components/experience";
+import { Hero } from "../_components/hero";
 import Projects from "../_components/projects";
 import Skills from "../_components/skills";
-import Contact from "../_components/contact";
-import Education from "../_components/education";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -32,11 +31,8 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
         );
       case "experience":
         return (
-          <WorkExperience key={section.identifier.current} section={section} />
+          <Experience key={section.identifier.current} section={section} />
         );
-      case "education":
-        console.log(section, data.raw.profile);
-        return <Education key={section.identifier.current} section={section} />;
       case "projects":
         return <Projects key={section.identifier.current} section={section} />;
       case "skills":

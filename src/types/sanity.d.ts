@@ -117,7 +117,7 @@ export interface ExperienceContent {
   role: string;
   highlights: string;
   description: string;
-  type: "work" | "education";
+  type: "work" | "education" | "volunteer";
   organization: string;
   dateRange: {
     isCurrent: boolean;
