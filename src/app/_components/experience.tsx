@@ -34,13 +34,6 @@ const experienceTypeConfig = {
 } as const;
 
 const Experience = ({ section }: { section: Section }) => {
-  // Ordenar experiencias por fecha (más reciente primero)
-  const sortedExperiences = [...section.content].sort((a, b) => {
-    const dateA = new Date((a as ExperienceContent).dateRange.end);
-    const dateB = new Date((b as ExperienceContent).dateRange.end);
-    return dateB.getTime() - dateA.getTime();
-  });
-
   return (
     <SectionContainer variant="work">
       <SectionHeader
@@ -57,11 +50,11 @@ const Experience = ({ section }: { section: Section }) => {
             whileInView={{ height: "100%" }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="h-full w-full bg-gradient-to-b from-blue-500/50 via-emerald-500/50 to-rose-500/50 blur-sm"
+            className="h-full w-full bg-gradient-to-b from-blue-500/50 via-emerald-500/50 to-rose-500/50"
           />
         </div>
 
-        {sortedExperiences.map((content, index) => {
+        {section.content.map((content, index) => {
           const experience = content as ExperienceContent;
           const type = (experience.type ||
             "work") as keyof typeof experienceTypeConfig;

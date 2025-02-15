@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Badge } from "./badge";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./card";
 import { Building2, CalendarDays } from "lucide-react";
+import { Separator } from "./separator";
 
 interface TimelineCardProps {
   title: string;
@@ -153,9 +154,9 @@ export function TimelineCard({
           {description}
         </motion.p>
       </CardContent>
-
+      {skills && <Separator />}
       {skills && (
-        <CardFooter className="flex-wrap gap-2 border-t border-border/50 pt-4">
+        <CardFooter className="flex-wrap gap-2 pt-4">
           <motion.div className="flex flex-wrap gap-2">
             {skills.map((skill, idx) => (
               <motion.div
