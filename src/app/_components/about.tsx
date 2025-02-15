@@ -259,8 +259,9 @@ const About = ({
                       transition={{ delay: 0.1 * index }}
                     >
                       <Button
-                        className="group font-display shadow-lg shadow-primary/25 transition-shadow hover:shadow-primary/40"
-                        variant="default"
+                        className="font-display"
+                        variant="gradient"
+                        size="lg"
                       >
                         <Icon className="h-6 w-6" />
                         {cta.label}

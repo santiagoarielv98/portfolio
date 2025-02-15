@@ -111,11 +111,12 @@ const Contact = ({
 
               <Button
                 type="submit"
-                className="group w-full font-display"
+                className="w-full font-display"
                 size="lg"
+                variant="gradient"
               >
                 Send Message
-                <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <Send />
               </Button>
             </form>
           </Card>

@@ -60,7 +60,8 @@ export function Hero({ section }: { section: Section }) {
               <Button
                 key={index}
                 size="lg"
-                className="font-display shadow-lg shadow-primary/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
+                variant="gradient"
+                className="font-display"
               >
                 <Icon className="h-6 w-6" />
                 {cta.label}

@@ -50,31 +50,31 @@ const Projects = ({ section }: { section: Section }) => {
                     <div className="flex gap-4">
                       <Button
                         size="icon"
-                        variant="secondary"
+                        variant="gradient"
                         asChild
                         className="rounded-full"
                       >
-                        <a
+                        <Link
                           href={project.links.live}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Rocket className="h-5 w-5" />
-                        </a>
+                          <Rocket />
+                        </Link>
                       </Button>
                       <Button
                         size="icon"
-                        variant="secondary"
+                        variant="gradient"
                         asChild
                         className="rounded-full"
                       >
-                        <a
+                        <Link
                           href={project.links.source}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Github className="h-5 w-5" />
-                        </a>
+                          <Github />
+                        </Link>
                       </Button>
                     </div>
                   </div>
