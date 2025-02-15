@@ -22,6 +22,24 @@ interface TimelineCardProps {
   type?: "work" | "education" | "volunteer";
 }
 
+const typeStyles = {
+  work: {
+    hover: "hover:border-blue-500/50 hover:shadow-blue-500/20",
+    gradient:
+      "from-blue-500/10 to-blue-400/10 hover:from-blue-500/20 hover:to-blue-400/20",
+  },
+  education: {
+    hover: "hover:border-emerald-500/50 hover:shadow-emerald-500/20",
+    gradient:
+      "from-emerald-500/10 to-emerald-400/10 hover:from-emerald-500/20 hover:to-emerald-400/20",
+  },
+  volunteer: {
+    hover: "hover:border-rose-500/50 hover:shadow-rose-500/20",
+    gradient:
+      "from-rose-500/10 to-rose-400/10 hover:from-rose-500/20 hover:to-rose-400/20",
+  },
+} as const;
+
 export function TimelineCard({
   title,
   organization,
@@ -29,32 +47,29 @@ export function TimelineCard({
   description,
   skills,
   className,
-  index = 0,
   decorativeIcon,
   meta,
   type = "work",
 }: TimelineCardProps) {
   const startDate = new Date(dateRange.start);
   const endDate = new Date(dateRange.end);
-
-  const typeStyles = {
-    work: "hover:border-blue-500/50 hover:shadow-blue-500/20",
-    education: "hover:border-emerald-500/50 hover:shadow-emerald-500/20",
-    volunteer: "hover:border-rose-500/50 hover:shadow-rose-500/20",
-  };
+  const styles = typeStyles[type];
 
   return (
     <Card
       className={cn(
         // Base styles
         "group relative overflow-hidden border-2 bg-background/95",
-        // Modern glass effect - removed backdrop-blur
-        "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-primary/10 before:to-transparent",
+        // Modern glass effect
+        "before:absolute before:inset-0 before:-translate-x-full",
+        "before:animate-[shimmer_2s_infinite]",
+        "before:bg-gradient-to-r before:from-transparent",
+        `before:via-${type === "work" ? "blue" : type === "education" ? "emerald" : "rose"}-500/10`,
+        "before:to-transparent",
         // Responsive transforms and shadows
         "transform-gpu transition-all duration-500 ease-out",
         "hover:-translate-y-1 hover:scale-[1.01]",
-        // Type-specific styles
-        typeStyles[type],
+        styles.hover,
         className,
       )}
     >
@@ -104,7 +119,7 @@ export function TimelineCard({
           </div>
 
           {/* Meta Information - Fixed alignment */}
-          <div className="flex shrink-0 flex-row items-start gap-2 sm:flex-col sm:items-end">
+          <div className="flex shrink-0 flex-row flex-wrap items-start gap-2 sm:flex-col sm:items-end">
             {meta}
             <Badge variant="outline" size="sm" className="whitespace-nowrap">
               <CalendarDays className="h-3 w-3 shrink-0" />
@@ -141,13 +156,7 @@ export function TimelineCard({
 
       {skills && (
         <CardFooter className="flex-wrap gap-2 border-t border-border/50 pt-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-wrap gap-2"
-          >
+          <motion.div className="flex flex-wrap gap-2">
             {skills.map((skill, idx) => (
               <motion.div
                 key={idx}
@@ -163,7 +172,11 @@ export function TimelineCard({
                 <Badge
                   variant="soft"
                   size="md"
-                  className="bg-gradient-to-r from-primary/10 to-secondary/10 font-medium transition-colors hover:from-primary/20 hover:to-secondary/20"
+                  className={cn(
+                    "font-medium",
+                    "bg-gradient-to-r",
+                    styles.gradient,
+                  )}
                 >
                   {skill.name}
                 </Badge>
