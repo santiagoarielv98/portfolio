@@ -23,7 +23,6 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
       case "hero":
         return <Hero key={section.identifier.current} section={section} />;
       case "about":
-        console.log(section, data.raw.profile);
         return (
           <About
             key={section.identifier.current}
@@ -36,6 +35,7 @@ const HomePage = async ({ params }: { params: Promise<{ lang: Locale }> }) => {
           <WorkExperience key={section.identifier.current} section={section} />
         );
       case "education":
+        console.log(section, data.raw.profile);
         return <Education key={section.identifier.current} section={section} />;
       case "projects":
         return <Projects key={section.identifier.current} section={section} />;

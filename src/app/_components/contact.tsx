@@ -149,12 +149,7 @@ const Contact = ({
               <div className="w-full border-t border-muted"></div>
             </div>
             <div className="relative flex justify-center">
-              <Badge
-                variant="outline"
-                className="bg-background px-4 text-muted-foreground"
-              >
-                Social Media
-              </Badge>
+              <Badge variant="outline">Social Media</Badge>
             </div>
           </div>
 

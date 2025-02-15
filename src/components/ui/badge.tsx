@@ -12,7 +12,7 @@ const badgeVariants = cva(
         secondary:
           "border-secondary/20 bg-secondary/10 text-secondary-foreground hover:bg-secondary/20 hover:border-secondary/30",
         accent:
-          "border-accent/30 bg-accent/20 text-accent-foreground hover:bg-accent/30 hover:border-accent/40",
+          "border-accent/30 bg-accent/20 text-foreground hover:bg-accent/30 hover:border-accent/40",
         outline:
           "border-primary/20 bg-background/80 text-foreground hover:border-primary/30 hover:bg-background",
         soft: "border-secondary/20 bg-secondary/10 text-foreground hover:bg-secondary/20 hover:border-secondary/30",

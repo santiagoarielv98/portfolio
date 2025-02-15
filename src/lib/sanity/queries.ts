@@ -39,7 +39,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
         platform,
         url,
         "tooltip": ${localizedField("tooltip", lang)},
-        icon->
+        "icon": icon->icon
       }
     },
     "availability": *[_type == "availabilityStatus" && _id == ^.availability._ref][0] {
@@ -58,7 +58,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
     actions[]-> {
       action,
       "label": ${localizedField("label", lang)},
-      icon->
+      "icon": icon->icon
     },
     "icon": icon->icon,
     "content": content[]-> {
@@ -87,7 +87,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
           "location": ${localizedField("location", lang)},
           "skills": skills[]-> {
             "name": ${localizedField("name", lang)},
-            icon,
+            "icon": icon->icon,
             proficiency,
             "tooltip": ${localizedField("tooltip", lang)}
           }
@@ -101,7 +101,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
           "location": ${localizedField("location", lang)},
           "skills": skills[]-> {
             "name": ${localizedField("name", lang)},
-            icon,
+            "icon": icon->icon,
             proficiency,
             "tooltip": ${localizedField("tooltip", lang)}
           }
@@ -113,7 +113,7 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
           "gallery": gallery[].asset->,
           "skills": skills[]-> {
             "name": ${localizedField("name", lang)},
-            icon,
+            "icon": icon->icon,
             proficiency,
             "tooltip": ${localizedField("tooltip", lang)}
           },
@@ -122,10 +122,10 @@ export const createPortfolioQuery = (lang: SupportedLanguage = "es") => `{
         },
         _type == "skillCategory" => {
           "name": ${localizedField("name", lang)},
-          icon,
+          "icon": icon->icon,
           "skills": skills[]-> {
             "name": ${localizedField("name", lang)},
-            icon,
+            "icon": icon->icon,
             proficiency,
             "tooltip": ${localizedField("tooltip", lang)}
           }

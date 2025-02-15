@@ -18,10 +18,7 @@ export interface SanityImage {
 export interface Action {
   action: string;
   label: string;
-  icon: {
-    icon: string;
-    name: string;
-  };
+  icon: string;
 }
 export interface Section {
   _type: "section";
@@ -73,10 +70,7 @@ export interface Social {
   platform: string;
   url: string;
   tooltip: string;
-  icon: {
-    name: string;
-    icon: string;
-  };
+  icon: string;
 }
 
 export interface Contact {
@@ -116,10 +110,7 @@ export interface ExperienceContent {
   location: string;
   skills: Array<{
     name: string;
-    icon: {
-      name: string;
-      icon: string;
-    };
+    icon: string;
     proficiency: number;
     tooltip: string;
   }>;
@@ -144,10 +135,7 @@ export interface ProjectContent {
   gallery: SanityImage[];
   skills: Array<{
     name: string;
-    icon: {
-      name: string;
-      icon: string;
-    };
+    icon: string;
     proficiency: number;
     tooltip: string;
   }>;
@@ -162,16 +150,10 @@ export interface ProjectContent {
 export interface SkillCategoryContent {
   _type: "skillCategory";
   name: string;
-  icon: {
-    name: string;
-    icon: string;
-  };
+  icon: string;
   skills: Array<{
     name: string;
-    icon: {
-      name: string;
-      icon: string;
-    };
+    icon: string;
     proficiency: number;
     tooltip: string;
   }>;

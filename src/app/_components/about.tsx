@@ -66,7 +66,7 @@ const ListSocial = ({ socials }: SocialLinksProps) => (
 
 // Social Button Component
 const SocialButton = ({ social, index }: { social: Social; index: number }) => {
-  const Icon = getIcon(social.icon.icon);
+  const Icon = getIcon(social.icon);
 
   return (
     <motion.div
@@ -236,7 +236,7 @@ const About = ({
                         variant="accent"
                         size="lg"
                         shadow="md"
-                        className="font-display text-foreground dark:text-accent-foreground"
+                        className="font-display"
                       >
                         {profile.role}
                       </Badge>
@@ -255,7 +255,7 @@ const About = ({
 
               <div className="flex flex-wrap justify-start gap-4 md:justify-center">
                 {section.actions?.map((cta, index) => {
-                  const Icon = getIcon(cta.icon.icon);
+                  const Icon = getIcon(cta.icon);
                   return (
                     <motion.div
                       key={cta.action}

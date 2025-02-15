@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Building2, CalendarDays, ScrollText, Trophy } from "lucide-react";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
+import { getIcon } from "@/components/icons";
 
 const Education = ({ section }: { section: Section }) => {
   return (
@@ -43,10 +44,7 @@ const Education = ({ section }: { section: Section }) => {
                     >
                       <Trophy className="h-6 w-6" />
                     </motion.div>
-                    <Badge
-                      variant="outline"
-                      className="flex items-center gap-1"
-                    >
+                    <Badge variant="outline">
                       <CalendarDays className="h-3 w-3" />
                       <span>
                         {startDate.toLocaleDateString("en-US", {
@@ -99,15 +97,15 @@ const Education = ({ section }: { section: Section }) => {
                       className="border-t border-border/50 pt-4"
                     >
                       <div className="flex flex-wrap gap-2">
-                        {education.skills.map((skill, idx) => (
-                          <Badge
-                            key={idx}
-                            variant="secondary"
-                            className="bg-secondary/50 shadow-sm transition-all duration-300 hover:bg-secondary/70 hover:shadow-md"
-                          >
-                            {skill.name}
-                          </Badge>
-                        ))}
+                        {education.skills.map((skill, idx) => {
+                          const Icon = getIcon(skill.icon);
+                          return (
+                            <Badge key={idx} variant="default">
+                              <Icon />
+                              {skill.name}
+                            </Badge>
+                          );
+                        })}
                       </div>
                     </motion.div>
                   )}
