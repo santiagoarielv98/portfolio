@@ -1,9 +1,10 @@
 "use client";
 
+import { BaseCard } from "@/components/base-card";
 import { getIcon } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
@@ -184,7 +185,7 @@ const About = ({
         subtitle={section.subtitle!}
         icon={section.icon}
       />
-      <Card className="relative mx-auto max-w-6xl border-2 bg-background/80 backdrop-blur-sm transition-colors duration-500 hover:border-primary/50">
+      <BaseCard>
         <CardContent className="overflow-hidden p-6 md:p-8">
           <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
             <div className="relative">
@@ -281,7 +282,7 @@ const About = ({
             </motion.div>
           </div>
         </CardContent>
-      </Card>
+      </BaseCard>
     </SectionContainer>
   );
 };

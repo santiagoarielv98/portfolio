@@ -1,7 +1,14 @@
 "use client";
 
+import { BaseCard } from "@/components/base-card";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import type { Section, SkillCategoryContent } from "@/types/sanity";
 import { motion } from "framer-motion";
 import {
@@ -17,12 +24,6 @@ import {
 } from "lucide-react";
 import { SectionContainer } from "./section-container";
 import { SectionHeader } from "./section-header";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const categoryIcons = {
   Frontend: <Layout className="h-6 w-6" />,
@@ -69,7 +70,7 @@ const Skills = ({ section }: { section: Section }) => {
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <Card className="h-full transform-gpu border-2 bg-background/80 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:scale-[1.02] hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/30">
+              <BaseCard>
                 <CardHeader className="space-y-4">
                   <CardTitle className="flex items-center gap-3 font-display">
                     <motion.div
@@ -143,7 +144,7 @@ const Skills = ({ section }: { section: Section }) => {
                     ))}
                   </div>
                 </CardContent>
-              </Card>
+              </BaseCard>
             </motion.div>
           );
         })}

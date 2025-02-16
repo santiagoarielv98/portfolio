@@ -1,8 +1,9 @@
 "use client";
 
+import { BaseCard } from "@/components/base-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { Profile, Section } from "@/types/sanity";
@@ -24,24 +25,24 @@ const ContactCard = ({
   href: string;
 }) => (
   <motion.a
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
     href={href}
     target="_blank"
     rel="noopener noreferrer"
     className="group block"
   >
-    <Card className="border-2 p-4 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/25">
-      <div className="flex items-center gap-4">
-        <div className="rounded-xl bg-primary/10 p-2 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
-          <Icon className="h-6 w-6" />
+    <BaseCard>
+      <CardContent className="p-6">
+        <div className="flex items-center gap-4">
+          <div className="rounded-xl bg-primary/10 p-2 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+            <Icon className="h-6 w-6" />
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">{title}</p>
+            <p className="font-display">{value}</p>
+          </div>
         </div>
-        <div>
-          <p className="text-sm text-muted-foreground">{title}</p>
-          <p className="font-display">{value}</p>
-        </div>
-      </div>
-    </Card>
+      </CardContent>
+    </BaseCard>
   </motion.a>
 );
 
@@ -73,53 +74,55 @@ const Contact = ({
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <Card className="border-2 bg-background/80 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <BaseCard>
+            <CardContent className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <label className="font-display text-sm">Name</label>
+                    <Input
+                      placeholder="John Doe"
+                      className="border-2 focus-visible:ring-primary"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-display text-sm">Email</label>
+                    <Input
+                      type="email"
+                      placeholder="john@example.com"
+                      className="border-2 focus-visible:ring-primary"
+                    />
+                  </div>
+                </div>
+
                 <div className="space-y-2">
-                  <label className="font-display text-sm">Name</label>
+                  <label className="font-display text-sm">Subject</label>
                   <Input
-                    placeholder="John Doe"
+                    placeholder="How can I help you?"
                     className="border-2 focus-visible:ring-primary"
                   />
                 </div>
+
                 <div className="space-y-2">
-                  <label className="font-display text-sm">Email</label>
-                  <Input
-                    type="email"
-                    placeholder="john@example.com"
-                    className="border-2 focus-visible:ring-primary"
+                  <label className="font-display text-sm">Message</label>
+                  <Textarea
+                    placeholder="Your message here..."
+                    className="min-h-[150px] resize-none border-2 focus-visible:ring-primary"
                   />
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <label className="font-display text-sm">Subject</label>
-                <Input
-                  placeholder="How can I help you?"
-                  className="border-2 focus-visible:ring-primary"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="font-display text-sm">Message</label>
-                <Textarea
-                  placeholder="Your message here..."
-                  className="min-h-[150px] resize-none border-2 focus-visible:ring-primary"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full font-display"
-                size="lg"
-                variant="gradient"
-              >
-                Send Message
-                <Send />
-              </Button>
-            </form>
-          </Card>
+                <Button
+                  type="submit"
+                  className="w-full font-display"
+                  size="lg"
+                  variant="gradient"
+                >
+                  Send Message
+                  <Send />
+                </Button>
+              </form>
+            </CardContent>
+          </BaseCard>
         </motion.div>
 
         {/* Contact Information */}
@@ -171,27 +174,29 @@ const Contact = ({
           </div>
 
           {/* Availability Card */}
-          <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="h-3 w-3 rounded-full bg-green-500" />
-                <div className="absolute inset-0 animate-ping rounded-full bg-green-500 opacity-75" />
-              </div>
-              <div>
-                {/*                   Available for Work
+          <BaseCard>
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <div className="h-3 w-3 rounded-full bg-green-500" />
+                  <div className="absolute inset-0 animate-ping rounded-full bg-green-500 opacity-75" />
+                </div>
+                <div>
+                  {/*                   Available for Work
                 </h4>
                 <p className="text-sm text-muted-foreground">
                   Currently accepting new projects
  */}
-                <h4 className="font-display text-primary">
-                  {profile.availability.status}
-                </h4>
-                <p className="text-sm text-muted-foreground">
-                  {profile.availability.message}
-                </p>
+                  <h4 className="font-display text-primary">
+                    {profile.availability.status}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    {profile.availability.message}
+                  </p>
+                </div>
               </div>
-            </div>
-          </Card>
+            </CardContent>
+          </BaseCard>
         </motion.div>
       </div>
     </SectionContainer>

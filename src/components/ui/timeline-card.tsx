@@ -2,9 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Badge } from "./badge";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./card";
 import { Building2, CalendarDays } from "lucide-react";
+import { BaseCard } from "../base-card";
+import { Badge } from "./badge";
+import { CardContent, CardFooter, CardHeader, CardTitle } from "./card";
 import { Separator } from "./separator";
 
 interface TimelineCardProps {
@@ -57,7 +58,7 @@ export function TimelineCard({
   const styles = typeStyles[type];
 
   return (
-    <Card
+    <BaseCard
       className={cn(
         // Base styles
         "group relative overflow-hidden border-2 bg-background/95",
@@ -186,6 +187,6 @@ export function TimelineCard({
           </motion.div>
         </CardFooter>
       )}
-    </Card>
+    </BaseCard>
   );
 }
