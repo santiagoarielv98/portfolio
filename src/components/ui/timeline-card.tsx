@@ -58,23 +58,7 @@ export function TimelineCard({
   const styles = typeStyles[type];
 
   return (
-    <BaseCard
-      className={cn(
-        // Base styles
-        "group relative overflow-hidden border-2 bg-background/95",
-        // Modern glass effect
-        "before:absolute before:inset-0 before:-translate-x-full",
-        "before:animate-[shimmer_2s_infinite]",
-        "before:bg-gradient-to-r before:from-transparent",
-        `before:via-${type === "work" ? "blue" : type === "education" ? "emerald" : "rose"}-500/10`,
-        "before:to-transparent",
-        // Responsive transforms and shadows
-        "transform-gpu transition-all duration-500 ease-out",
-        "hover:-translate-y-1 hover:scale-[1.01]",
-        styles.hover,
-        className,
-      )}
-    >
+    <BaseCard className={cn(styles.hover, className)}>
       <CardHeader className="relative space-y-4">
         {/* Header Grid Layout - Improved grid template */}
         <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-[auto_minmax(0,1fr)_auto]">

@@ -52,7 +52,7 @@ export function Hero({ section }: { section: Section }) {
 
         <div className="animation-delay-500 flex animate-fade-in-up flex-col items-center justify-center gap-4 sm:flex-row">
           {section.actions?.map((cta, index) => {
-            const Icon = getIcon(cta.icon.icon);
+            const Icon = getIcon(cta.icon);
 
             return (
               <Button

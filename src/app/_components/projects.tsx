@@ -1,8 +1,9 @@
 "use client";
 
+import { BaseCard } from "@/components/base-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ProjectContent, Section } from "@/types/sanity";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Rocket } from "lucide-react";
@@ -31,7 +32,7 @@ const Projects = ({ section }: { section: Section }) => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="group h-full overflow-hidden border-2 bg-background/80 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/25">
+              <BaseCard className="overflow-hidden">
                 {/* Image Container */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -117,7 +118,7 @@ const Projects = ({ section }: { section: Section }) => {
                     ))}
                   </div>
                 </CardContent>
-              </Card>
+              </BaseCard>
             </motion.div>
           );
         })}
